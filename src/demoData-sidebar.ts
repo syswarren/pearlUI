@@ -1,5 +1,9 @@
 import { Users, FileText, Activity, Folder, Frame, PieChart, Map, House, Command, MoreHorizontal } from "lucide-react";
 
+function toKebab(str: string) {
+  return str.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
 export const sidebarMainNavTitle = "Main nav";
 export const sidebarMenuTitle = "Folders";
 export const sidebarProjectsTitle = "Conversations";
@@ -7,22 +11,22 @@ export const sidebarProjectsTitle = "Conversations";
 export const sidebarMainNav = [
     {
       name: "Home",
-      url: "/quick-access",
+      url: "/dashboard/home",
       icon: House,
     },
     {
       name: "Activity",
-      url: "/favorites",
+      url: "/dashboard/activity",
       icon: Activity,
     },
     {
       name: "Documents",
-      url: "/recent",
+      url: "/dashboard/documents",
       icon: FileText,
     },
     {
       name: "Members",
-      url: "/recent",
+      url: "/dashboard/members",
       icon: Users,
     },
   
@@ -32,39 +36,39 @@ export const sidebarMainNav = [
 export const sidebarMenu = [
   {
     title: "Dashboard",
-    url: "/dashboard",
+    url: `/dashboard/folder/dashboard`,
     icon: Folder,
     isActive: true,
     items: [
-      { title: "Overview", url: "/dashboard/overview" },
-      { title: "Stats", url: "/dashboard/stats" }
+      { title: "Overview", url: `/dashboard/folder/dashboard/conversation/overview` },
+      { title: "Stats", url: `/dashboard/folder/dashboard/conversation/stats` }
     ]
   },
   {
     title: "Reports",
-    url: "/reports",
+    url: `/dashboard/folder/reports`,
     icon: Folder,
     items: [
-      { title: "Sales", url: "/reports/sales" },
-      { title: "Inventory", url: "/reports/inventory" }
+      { title: "Sales", url: `/dashboard/folder/reports/conversation/sales` },
+      { title: "Inventory", url: `/dashboard/folder/reports/conversation/inventory` }
     ]
   },
   {
     title: "Documentation",
-    url: "/docs",
+    url: `/dashboard/folder/documentation`,
     icon: Folder,
     items: [
-      { title: "Introduction", url: "/docs/intro" },
-      { title: "Tutorials", url: "/docs/tutorials" }
+      { title: "Introduction", url: `/dashboard/folder/documentation/conversation/introduction` },
+      { title: "Tutorials", url: `/dashboard/folder/documentation/conversation/tutorials` }
     ]
   },
   {
     title: "Settings",
-    url: "/settings",
+    url: `/dashboard/folder/settings`,
     icon: Folder,
     items: [
-      { title: "Profile", url: "/settings/profile" },
-      { title: "Team", url: "/settings/team" }
+      { title: "Profile", url: `/dashboard/folder/settings/conversation/profile` },
+      { title: "Team", url: `/dashboard/folder/settings/conversation/team` }
     ]
   }
 ];
@@ -73,17 +77,17 @@ export const sidebarMenu = [
 export const sidebarProjects = [
   {
     name: "Design Engineering",
-    url: "#",
+    url: "/dashboard/conversation/design-engineering",
     icon: Frame,
   },
   {
     name: "Sales & Marketing",
-    url: "#",
+    url: "/dashboard/conversation/sales-marketing",
     icon: PieChart,
   },
   {
     name: "Travel",
-    url: "#",
+    url: "/dashboard/conversation/travel",
     icon: Map,
   },
 ];

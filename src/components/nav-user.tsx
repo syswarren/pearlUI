@@ -2,8 +2,8 @@
 
 import {
   BadgeCheck,
-  Bell,
-  ChevronsUpDown,
+  Settings,
+  ChevronRight,
   CreditCard,
   LogOut,
   Sparkles,
@@ -61,7 +61,7 @@ export function NavUser({
                 <span className="truncate font-medium">{user.name}</span>
                 <span className="truncate text-xs">{user.email}</span>
               </div>
-              <ChevronsUpDown className="ml-auto size-4" />
+              <ChevronRight className="ml-auto size-4" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
@@ -98,9 +98,9 @@ export function NavUser({
                 }}
               >
                 {typeof window !== "undefined" && document.documentElement.classList.contains("dark") ? (
-                  <Sun className="text-yellow-400" />
+                  <Sun/>
                 ) : (
-                  <Moon className="text-blue-600" />
+                  <Moon />
                 )}
                 <span>Toggle {typeof window !== "undefined" && document.documentElement.classList.contains("dark") ? "Light" : "Dark"} Mode</span>
               </DropdownMenuItem>
@@ -108,16 +108,12 @@ export function NavUser({
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <BadgeCheck />
-                Account
-              </DropdownMenuItem>
-              <DropdownMenuItem>
                 <CreditCard />
                 Billing
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Bell />
-                Notifications
+                <Settings />
+                Settings
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

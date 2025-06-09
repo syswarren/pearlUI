@@ -1,10 +1,7 @@
 "use client"
 
 import {
-  Folder,
   MoreHorizontal,
-  Share,
-  Trash2,
   type LucideIcon,
 } from "lucide-react"
 
@@ -24,6 +21,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { usePathname } from "next/navigation"
 
 export function NavProjects({
   projects,
@@ -37,6 +35,7 @@ export function NavProjects({
   label?: string
 }) {
   const { isMobile } = useSidebar()
+  const pathname = usePathname();
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
@@ -44,7 +43,7 @@ export function NavProjects({
       <SidebarMenu>
         {projects.map((item) => (
           <SidebarMenuItem key={item.name}>
-            <SidebarMenuButton asChild>
+            <SidebarMenuButton asChild isActive={pathname === item.url}>
               <a href={item.url}>
                 <span>{item.name}</span>
               </a>
@@ -62,17 +61,14 @@ export function NavProjects({
                 align={isMobile ? "end" : "start"}
               >
                 <DropdownMenuItem>
-                  <Folder className="text-muted-foreground" />
-                  <span>View Project</span>
+                  <span>Add to folder</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Share className="text-muted-foreground" />
-                  <span>Share Project</span>
+                  <span>Rename</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                  <Trash2 className="text-muted-foreground" />
-                  <span>Delete Project</span>
+                  <span>Delete</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -97,6 +93,7 @@ export function NavMainNav({
   hideLabel?: boolean
 }) {
   const { isMobile } = useSidebar()
+  const pathname = usePathname();
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
@@ -104,39 +101,43 @@ export function NavMainNav({
       <SidebarMenu>
         {items.map((item) => (
           <SidebarMenuItem key={item.name}>
-            <SidebarMenuButton asChild>
+            <SidebarMenuButton asChild isActive={pathname === item.url}>
               <a href={item.url}>
                 <item.icon />
                 <span>{item.name}</span>
               </a>
             </SidebarMenuButton>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuAction showOnHover>
-                  <MoreHorizontal />
-                  <span className="sr-only">More</span>
-                </SidebarMenuAction>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                className="w-48"
-                side={isMobile ? "bottom" : "right"}
-                align={isMobile ? "end" : "start"}
-              >
-                <DropdownMenuItem>
-                  <Folder className="text-muted-foreground" />
-                  <span>View Item</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Share className="text-muted-foreground" />
-                  <span>Share Item</span>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <Trash2 className="text-muted-foreground" />
-                  <span>Delete Item</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            {!(
+              item.name === "Home" ||
+              item.name === "Documents" ||
+              item.name === "Activity" ||
+              item.name === "Members"
+            ) && (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <SidebarMenuAction showOnHover>
+                    <MoreHorizontal />
+                    <span className="sr-only">More</span>
+                  </SidebarMenuAction>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  className="w-48"
+                  side={isMobile ? "bottom" : "right"}
+                  align={isMobile ? "end" : "start"}
+                >
+                  <DropdownMenuItem>
+                    <span>View Item</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <span>Share Item</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <span>Delete Item</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
           </SidebarMenuItem>
         ))}
       </SidebarMenu>

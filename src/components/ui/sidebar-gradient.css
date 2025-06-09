@@ -1,0 +1,7 @@
+.sidebar-menu-button-gradient {
+  background: linear-gradient(
+    to right,
+    rgba(var(--sidebar-accent-rgb), 1) 0%,
+    rgba(var(--sidebar-accent-rgb), 0) 100%
+  ) !important;
+} 

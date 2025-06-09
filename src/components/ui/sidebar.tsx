@@ -24,6 +24,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import './sidebar-gradient.css';
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -517,7 +518,11 @@ function SidebarMenuButton({
       data-sidebar="menu-button"
       data-size={size}
       data-active={isActive}
-      className={cn(sidebarMenuButtonVariants({ variant, size }), className)}
+      className={cn(
+        sidebarMenuButtonVariants({ variant, size }),
+        className,
+        isActive && 'sidebar-menu-button-gradient'
+      )}
       {...props}
     />
   )
@@ -691,7 +696,8 @@ function SidebarMenuSubButton({
         size === "sm" && "text-xs",
         size === "md" && "text-sm",
         "group-data-[collapsible=icon]:hidden",
-        className
+        className,
+        isActive && 'sidebar-menu-button-gradient'
       )}
       {...props}
     />
