@@ -84,8 +84,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </Breadcrumb>
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          {children}
+        <div style={{ maxWidth: '72rem', margin: '0 auto', width: '100%' }}>
+          <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+            {children}
+          </div>
         </div>
       </SidebarInset>
     </SidebarProvider>

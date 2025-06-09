@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
@@ -8,10 +8,7 @@ export const metadata: Metadata = {
   description: "UI Demo",
 };
 
-const geistSans = Geist({
-  subsets: ["latin"],
-});
-const geistMono = Geist_Mono({
+const inter = Inter({
   subsets: ["latin"],
 });
 
@@ -38,7 +35,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased">
+      <body className={`antialiased ${inter.className}`}>
         <ThemeProvider>
           {children}
         </ThemeProvider>
