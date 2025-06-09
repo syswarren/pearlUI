@@ -8,7 +8,7 @@ const Login6 = () => {
     <section className="relative py-32">
       <div className="container">
         <div className="flex flex-col gap-4">
-          <div className="mx-auto w-full max-w-sm rounded-md p-6">
+          <div className="mx-auto w-full max-w-sm rounded-sm p-6">
             <div className="mb-6 flex flex-col items-center text-center">
               <a
                 href="/"
