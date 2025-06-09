@@ -8,7 +8,7 @@ const pages = [
     description: "The main dashboard overview.",
     icon: House,
     url: "/dashboard/home",
-    status: "Work in progress",
+    status: "Ongoing",
   },
   {
     id: "activity",
@@ -16,7 +16,7 @@ const pages = [
     description: "See recent activity and updates.",
     icon: Activity,
     url: "/dashboard/activity",
-    status: "Work in progress",
+    status: "Ongoing",
   },
   {
     id: "documents",
@@ -24,7 +24,7 @@ const pages = [
     description: "Access and manage documents.",
     icon: FileText,
     url: "/dashboard/documents",
-    status: "Work in progress",
+    status: "Ongoing",
   },
   {
     id: "members",
@@ -40,7 +40,7 @@ const pages = [
     description: "Organize conversations in folders.",
     icon: Folder,
     url: "/dashboard/folder/1",
-    status: "Work in progress",
+    status: "Ongoing",
   },
   {
     id: "conversations",
@@ -56,7 +56,7 @@ const pages = [
   description: "Login to Pearl.",
   icon: KeyRound,
   url: "/login",
-  status: "To do",
+  status: "Done",
 },
 ];
 

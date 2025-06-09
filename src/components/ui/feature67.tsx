@@ -83,7 +83,7 @@ interface Feature67Props {
 
 const getStatusBadgeVariant = (status?: string) => {
   if (status === 'Done') return 'green';
-  if (status === 'Work in progress') return 'yellow';
+  if (status === 'Ongoing') return 'yellow';
   if (status === 'To do') return 'gray';
   return 'gray';
 };
@@ -102,7 +102,7 @@ const Feature67: React.FC<Feature67Props> = ({ features = defaultFeatures, title
             </p>
           )}
         </div>
-        <div className="grid w-full gap-6 md:grid-cols-2">
+        <div className="grid w-full gap-6 md:grid-cols-1">
           {features.map((feature) =>
             feature.url ? (
               <Link
