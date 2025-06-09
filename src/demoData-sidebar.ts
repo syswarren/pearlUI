@@ -1,9 +1,5 @@
 import { Users, FileText, Activity, Folder, House } from "lucide-react";
 
-function toKebab(str: string) {
-  return str.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-}
-
 export const sidebarMainNavTitle = "Main nav";
 export const sidebarMenuTitle = "Folders";
 export const sidebarProjectsTitle = "Conversations";

@@ -42,10 +42,16 @@ export function NavMain({
   const [openFolders, setOpenFolders] = React.useState<Record<string, boolean>>({});
 
   // Helper to determine if a folder or any of its children is active
-  const isFolderActive = (item: any) => {
+  const isFolderActive = (item: {
+    title: string;
+    url: string;
+    icon: LucideIcon;
+    isActive?: boolean;
+    items?: { title: string; url: string }[];
+  }) => {
     if (pathname === item.url) return true;
     if (item.items) {
-      return item.items.some((subItem: any) => pathname === subItem.url);
+      return item.items.some((subItem: { title: string; url: string }) => pathname === subItem.url);
     }
     return false;
   };

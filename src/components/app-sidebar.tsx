@@ -13,6 +13,7 @@ import {
   Settings2,
   SquareTerminal,
 } from "lucide-react"
+import Image from "next/image"
 
 import { NavMain } from "@/components/nav-main"
 import { NavProjects } from "@/components/nav-projects"
@@ -40,7 +41,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarMenuButton size="lg" asChild>
               <a href="#">
                 <div className="flex aspect-square size-7 items-center justify-center">
-                  <img src="/pearl-logo.svg" alt="Pearl Logo" className="size-7" style={{ filter: 'var(--logo-filter)' }} />
+                  <Image src="/pearl-logo.svg" alt="Pearl Logo" width={28} height={28} className="size-7" style={{ filter: 'var(--logo-filter)' }} />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-medium">Pearl</span>

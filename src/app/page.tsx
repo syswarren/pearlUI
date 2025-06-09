@@ -1,5 +1,3 @@
-import Link from "next/link";
-import Image from "next/image";
 import { Feature67 } from "@/components/ui/feature67";
 import { House, Activity, FileText, Users, Folder, MessageCircle, KeyRound } from "lucide-react";
 
@@ -10,7 +8,7 @@ const pages = [
     description: "The main dashboard overview.",
     icon: House,
     url: "/dashboard/home",
-    status: "Done",
+    status: "Work in progress",
   },
   {
     id: "activity",
@@ -26,7 +24,7 @@ const pages = [
     description: "Access and manage documents.",
     icon: FileText,
     url: "/dashboard/documents",
-    status: "To do",
+    status: "Work in progress",
   },
   {
     id: "members",

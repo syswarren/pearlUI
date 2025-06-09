@@ -1,4 +1,6 @@
 import { FcGoogle } from "react-icons/fc";
+import Image from "next/image";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,16 +12,9 @@ const Login6 = () => {
         <div className="flex flex-col gap-4">
           <div className="mx-auto w-full max-w-sm rounded-sm p-6">
             <div className="mb-6 flex flex-col items-center text-center">
-              <a
-                href="/"
-                className="mb-6 flex items-center gap-2"
-              >
-                <img
-                  src="/pearl-logo.svg"
-                  alt="Pearl logo"
-                  style={{ width: '42px', height: '42px', filter: 'var(--logo-filter)' }}
-                />
-              </a>
+              <Link href="/" className="mb-6 flex items-center gap-2">
+                <Image src="/pearl-logo.svg" alt="Pearl logo" width={42} height={42} style={{ filter: 'var(--logo-filter)' }} />
+              </Link>
               <h1 className="text-2xl font-bold">Login</h1>
             </div>
             <div>
