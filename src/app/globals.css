@@ -74,7 +74,7 @@
   --sidebar-primary-foreground: oklch(0.985 0.002 247.839);
   --sidebar-accent: oklch(0.967 0.003 264.542);
   --sidebar-accent-foreground: oklch(0.21 0.034 264.665);
-  --sidebar-accent-rgb: 225, 229, 237; /* Approximate RGB for oklch(0.967 0.003 264.542) */
+  --sidebar-accent-rgb: 230, 230, 230; /* Need RGB for gradient otherwise this doesn't work) */
   --sidebar-border: oklch(0.928 0.006 264.531);
   --sidebar-ring: oklch(0.707 0.022 261.325);
   --logo-filter: brightness(0.2);

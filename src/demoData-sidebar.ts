@@ -1,4 +1,4 @@
-import { Users, FileText, Activity, Folder, Frame, PieChart, Map, House, Command, MoreHorizontal } from "lucide-react";
+import { Users, FileText, Activity, Folder, House } from "lucide-react";
 
 function toKebab(str: string) {
   return str.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -35,40 +35,42 @@ export const sidebarMainNav = [
 
 export const sidebarMenu = [
   {
-    title: "Dashboard",
-    url: `/dashboard/folder/dashboard`,
+    title: "Acme Corp",
+    url: `/dashboard/folder/acme-corp`,
     icon: Folder,
     isActive: true,
     items: [
-      { title: "Overview", url: `/dashboard/folder/dashboard/conversation/overview` },
-      { title: "Stats", url: `/dashboard/folder/dashboard/conversation/stats` }
+      { title: "Latest update", url: `/dashboard/folder/acme-corp/conversation/latest-update` },
+      { title: "Acme Corp - Expansion", url: `/dashboard/folder/acme-corp/conversation/acme-corp-expansion` },
+      { title: "Acme Corp - Renewal 2025", url: `/dashboard/folder/acme-corp/conversation/acme-corp-renewal-2025` }
     ]
   },
   {
-    title: "Reports",
-    url: `/dashboard/folder/reports`,
+    title: "Ardent Media",
+    url: `/dashboard/folder/ardent-media`,
     icon: Folder,
     items: [
-      { title: "Sales", url: `/dashboard/folder/reports/conversation/sales` },
-      { title: "Inventory", url: `/dashboard/folder/reports/conversation/inventory` }
+      { title: "Call prep", url: `/dashboard/folder/ardent-media/conversation/call-prep` },
+      { title: "Contact update", url: `/dashboard/folder/ardent-media/conversation/contact-update` },
+      { title: "Ardent Media - New deal", url: `/dashboard/folder/ardent-media/conversation/ardent-media-new-deal` }
     ]
   },
   {
-    title: "Documentation",
-    url: `/dashboard/folder/documentation`,
+    title: "Velar Technologies",
+    url: `/dashboard/folder/velar-technologies`,
     icon: Folder,
     items: [
-      { title: "Introduction", url: `/dashboard/folder/documentation/conversation/introduction` },
-      { title: "Tutorials", url: `/dashboard/folder/documentation/conversation/tutorials` }
+      { title: "Pricing discussion", url: `/dashboard/folder/velar-technologies/conversation/pricing-discussion` },
+      { title: "Demo prep", url: `/dashboard/folder/velar-technologies/conversation/demo-prep` }
     ]
   },
   {
-    title: "Settings",
-    url: `/dashboard/folder/settings`,
+    title: "Annual goals",
+    url: `/dashboard/folder/annual-goals`,
     icon: Folder,
     items: [
-      { title: "Profile", url: `/dashboard/folder/settings/conversation/profile` },
-      { title: "Team", url: `/dashboard/folder/settings/conversation/team` }
+      { title: "Forecast", url: `/dashboard/folder/annual-goals/conversation/forecast` },
+      { title: "Priorities", url: `/dashboard/folder/annual-goals/conversation/priorities` }
     ]
   }
 ];
@@ -76,19 +78,16 @@ export const sidebarMenu = [
 
 export const sidebarProjects = [
   {
-    name: "Design Engineering",
-    url: "/dashboard/conversation/design-engineering",
-    icon: Frame,
+    name: "Team update",
+    url: "/dashboard/conversation/team-update",
   },
   {
-    name: "Sales & Marketing",
-    url: "/dashboard/conversation/sales-marketing",
-    icon: PieChart,
+    name: "Review proposal",
+    url: "/dashboard/conversation/review-proposal",
   },
   {
-    name: "Travel",
-    url: "/dashboard/conversation/travel",
-    icon: Map,
+    name: "Feedback on email draft",
+    url: "/dashboard/conversation/feedback-on-email-draft",
   },
 ];
 
