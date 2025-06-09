@@ -81,11 +81,11 @@ interface Feature67Props {
   description?: string;
 }
 
-const getStatusBadgeStyle = (status?: string) => {
-  if (status === 'Done') return { backgroundColor: 'oklch(92.5% 0.084 155.995)', color: '#14532d' };
-  if (status === 'Work in progress') return { backgroundColor: 'oklch(90.1% 0.076 70.697)', color: '#7c2d12' };
-  if (status === 'To do') return { backgroundColor: 'oklch(55.1% 0.027 264.364)', color: '#fff' };
-  return {};
+const getStatusBadgeVariant = (status?: string) => {
+  if (status === 'Done') return 'green';
+  if (status === 'Work in progress') return 'yellow';
+  if (status === 'To do') return 'gray';
+  return 'gray';
 };
 
 const Feature67: React.FC<Feature67Props> = ({ features = defaultFeatures, title, description }) => {
@@ -112,7 +112,7 @@ const Feature67: React.FC<Feature67Props> = ({ features = defaultFeatures, title
               >
                 {feature.status && (
                   <div className="absolute top-4 right-4 z-10">
-                    <Badge style={getStatusBadgeStyle(feature.status)}>
+                    <Badge variant={getStatusBadgeVariant(feature.status)}>
                       {feature.status}
                     </Badge>
                   </div>
@@ -136,7 +136,7 @@ const Feature67: React.FC<Feature67Props> = ({ features = defaultFeatures, title
               >
                 {feature.status && (
                   <div className="absolute top-4 right-4 z-10">
-                    <Badge style={getStatusBadgeStyle(feature.status)}>
+                    <Badge variant={getStatusBadgeVariant(feature.status)}>
                       {feature.status}
                     </Badge>
                   </div>

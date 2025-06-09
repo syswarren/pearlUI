@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Feature67 } from "@/components/ui/feature67";
-import { House, Activity, FileText, Users, Folder, MessageCircle } from "lucide-react";
+import { House, Activity, FileText, Users, Folder, MessageCircle, KeyRound } from "lucide-react";
 
 const pages = [
   {
@@ -41,7 +41,7 @@ const pages = [
     title: "Folder Page",
     description: "Organize conversations in folders.",
     icon: Folder,
-    url: "/dashboard/folder",
+    url: "/dashboard/folder/1",
     status: "Work in progress",
   },
   {
@@ -49,9 +49,17 @@ const pages = [
     title: "Conversation Page",
     description: "Collaborate and discuss in conversations.",
     icon: MessageCircle,
-    url: "/dashboard/conversation",
+    url: "/dashboard/conversation/1",
     status: "To do",
   },
+  {
+  id: "login",
+  title: "Login Page",
+  description: "Login to Pearl.",
+  icon: KeyRound,
+  url: "/login",
+  status: "To do",
+},
 ];
 
 export default function Home() {
@@ -59,7 +67,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen items-center justify-center bg-background text-foreground p-8">
       <Feature67
         features={pages}
-        title="Pearl UI Demo"
+        title="Pearl UI"
         description="Quickly access and preview the main sections of your dashboard. Click any block to jump to that page."
       />
     </div>

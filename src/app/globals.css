@@ -45,38 +45,38 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.13 0.028 261.692);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.13 0.028 261.692);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.13 0.028 261.692);
-  --primary: oklch(0.21 0.034 264.665);
-  --primary-foreground: oklch(0.985 0.002 247.839);
-  --secondary: oklch(0.967 0.003 264.542);
-  --secondary-foreground: oklch(0.21 0.034 264.665);
-  --muted: oklch(0.967 0.003 264.542);
-  --muted-foreground: oklch(0.551 0.027 264.364);
-  --accent: oklch(0.967 0.003 264.542);
-  --accent-foreground: oklch(0.21 0.034 264.665);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.928 0.006 264.531);
-  --input: oklch(0.928 0.006 264.531);
-  --ring: oklch(0.707 0.022 261.325);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0.002 247.839);
-  --sidebar-foreground: oklch(0.13 0.028 261.692);
-  --sidebar-primary: oklch(0.21 0.034 264.665);
-  --sidebar-primary-foreground: oklch(0.985 0.002 247.839);
-  --sidebar-accent: oklch(0.967 0.003 264.542);
-  --sidebar-accent-foreground: oklch(0.21 0.034 264.665);
-  --sidebar-accent-rgb: 230, 230, 230; /* Need RGB for gradient otherwise this doesn't work) */
-  --sidebar-border: oklch(0.928 0.006 264.531);
-  --sidebar-ring: oklch(0.707 0.022 261.325);
+  --background: rgb(238, 240, 252);
+  --foreground: rgb(3, 7, 18);
+  --card: rgb(255, 255, 255);
+  --card-foreground: rgb(3, 7, 18);
+  --popover: rgb(255, 255, 255);
+  --popover-foreground: rgb(3, 7, 18);
+  --primary: rgb(16, 24, 40);
+  --primary-foreground: rgb(249, 250, 251);
+  --secondary: rgb(243, 244, 246);
+  --secondary-foreground: rgb(16, 24, 40);
+  --muted: rgb(243, 244, 246);
+  --muted-foreground: rgb(106, 114, 130);
+  --accent: rgb(243, 244, 246);
+  --accent-foreground: rgb(16, 24, 40);
+  --destructive: rgb(231, 0, 11);
+  --border: rgb(229, 231, 235);
+  --input: rgb(229, 231, 235);
+  --ring: rgb(153, 161, 175);
+  --chart-1: rgb(245, 74, 0);
+  --chart-2: rgb(0, 150, 137);
+  --chart-3: rgb(16, 78, 100);
+  --chart-4: rgb(255, 186, 0);
+  --chart-5: rgb(253, 154, 0);
+  --sidebar: rgb(255, 255, 255);
+  --sidebar-foreground: rgb(3, 7, 18);
+  --sidebar-primary: rgb(16, 24, 40);
+  --sidebar-primary-foreground: rgb(249, 250, 251);
+  --sidebar-accent: rgb(243, 244, 246);
+  --sidebar-accent-foreground: rgb(16, 24, 40);
+  --sidebar-accent-rgb: 238, 240, 255; /* Need RGB for gradient otherwise this doesn't work) */
+  --sidebar-border: rgb(229, 231, 235);
+  --sidebar-ring: rgb(153, 161, 175);
   --logo-filter: brightness(0.2);
 }
 
@@ -98,7 +98,7 @@
   --destructive: rgba(153, 40, 40, 1);
   --destructive-foreground: rgba(250, 250, 250, 1);
   --border: rgba(32, 33, 36, 1);
-  --input: rgba(32, 33, 36, 1);
+  --input: rgb(75, 78, 85);
   --ring: rgba(212, 212, 212, 1);
   --chart-1: rgba(38, 128, 217, 1);
   --chart-2: rgba(46, 163, 115, 1);
@@ -128,4 +128,24 @@
 
 .dark [data-slot="dropdown-menu-content"] {
   background: rgba(38, 40, 43, 1) !important;
+}
+
+.custom-bg {
+  background-size: 100% 100%;
+  background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+  background-image:
+    linear-gradient(0deg, #E4E6F1 50%, #1A1B1F00 100%),
+    radial-gradient(80% 50% at 104% 12%, #FFAC8663 40%, #073AFF00 100%),
+    radial-gradient(74% 50% at 0% 14%, #97A0D36E 40%, #073AFF00 100%),
+    linear-gradient(125deg, #E4E6F1 0%, #E4E6F1 100%);
+}
+
+.dark .custom-bg {
+  background-size: 100% 100%;
+  background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+  background-image:
+    linear-gradient(0deg, #1A1B1F 50%, #1A1B1F00 100%),
+    radial-gradient(80% 50% at 104% 12%, #FFAC8652 40%, #073AFF00 100%),
+    radial-gradient(74% 50% at 0% 14%, #97A0D357 40%, #073AFF00 100%),
+    linear-gradient(125deg, #1A1B1F 0%, #1A1B1F 100%);
 }
