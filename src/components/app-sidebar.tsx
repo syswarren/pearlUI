@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/sidebar"
 import { sidebarMenu, sidebarProjects, sidebarUser, sidebarMainNav, sidebarMainNavTitle, sidebarMenuTitle, sidebarProjectsTitle } from "@/demoData-sidebar"
 import { NavMainNav } from "@/components/nav-projects"
+import { demoCompany } from "@/demoData"
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -38,12 +39,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <a href="#">
-                <div className="flex aspect-square size-8 items-center justify-center">
-                  <img src="/pearl-logo.svg" alt="Pearl Logo" className="size-8" style={{ filter: 'var(--logo-filter)' }} />
+                <div className="flex aspect-square size-7 items-center justify-center">
+                  <img src="/pearl-logo.svg" alt="Pearl Logo" className="size-7" style={{ filter: 'var(--logo-filter)' }} />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">DemoCorp</span>
-                  <span className="truncate text-xs">Enterprise</span>
+                  <span className="truncate font-medium">Pearl</span>
+                  <span className="truncate text-xs opacity-60">Alpha</span>
                 </div>
               </a>
             </SidebarMenuButton>
