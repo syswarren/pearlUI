@@ -35,7 +35,7 @@ const Login6 = () => {
                   Sign in
                 </Button>
 
-                <Button variant="outline" className="w-full">
+                <Button variant="secondary" className="w-full">
                   <FcGoogle className="mr-2 size-5" />
                   Sign up with Google
                 </Button>

@@ -51,7 +51,7 @@
   --card-foreground: rgb(3, 7, 18);
   --popover: rgb(255, 255, 255);
   --popover-foreground: rgb(3, 7, 18);
-  --primary: rgb(16, 24, 40);
+  --primary: rgb(24, 24, 27);
   --primary-foreground: rgb(249, 250, 251);
   --secondary: rgb(243, 244, 246);
   --secondary-foreground: rgb(16, 24, 40);
@@ -61,7 +61,7 @@
   --accent-foreground: rgb(16, 24, 40);
   --destructive: rgb(231, 0, 11);
   --border: rgb(229, 231, 235);
-  --input: rgb(229, 231, 235);
+  --input: rgb(255, 255, 255);
   --ring: rgb(153, 161, 175);
   --chart-1: rgb(245, 74, 0);
   --chart-2: rgb(0, 150, 137);
@@ -70,14 +70,14 @@
   --chart-5: rgb(253, 154, 0);
   --sidebar: rgb(255, 255, 255);
   --sidebar-foreground: rgb(3, 7, 18);
-  --sidebar-primary: rgb(16, 24, 40);
+  --sidebar-primary: rgb(24, 24, 27);
   --sidebar-primary-foreground: rgb(249, 250, 251);
   --sidebar-accent: rgb(243, 244, 246);
   --sidebar-accent-foreground: rgb(16, 24, 40);
   --sidebar-accent-rgb: 238, 240, 255; /* Need RGB for gradient otherwise this doesn't work) */
   --sidebar-border: rgb(229, 231, 235);
   --sidebar-ring: rgb(153, 161, 175);
-  --logo-filter: brightness(0.2);
+  --logo-filter: brightness(0.1);
 }
 
 .dark {
