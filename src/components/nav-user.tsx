@@ -9,6 +9,7 @@ import {
   Moon,
 } from "lucide-react"
 import { useEffect, useState } from "react"
+import Link from "next/link"
 
 import {
   Avatar,
@@ -105,13 +106,17 @@ export function NavUser({
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
+              <DropdownMenuItem asChild>
+                <Link href="/dashboard/settings" className="flex items-center gap-2">
+                  <Settings className="size-4" />
+                  <span>Settings</span>
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuGroup>
               <DropdownMenuItem>
                 <CreditCard />
                 Billing
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Settings />
-                Settings
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

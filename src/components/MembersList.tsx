@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
+import PageHeader from "@/components/PageHeader";
 
 export type Member = {
   name: string;
@@ -15,27 +16,11 @@ interface MembersListProps {
 export default function MembersList({ people }: MembersListProps) {
   return (
     <div className="px-4 mt-4 sm:px-6 mt-6 lg:px-8 mt-8">
-      <div className="sm:flex sm:items-center">
-        <div className="sm:flex-auto">
-          <h1
-            className="text-2xl font-semibold"
-            style={{ color: "var(--color-foreground)" }}
-          >
-            Members
-          </h1>
-          <p
-            className="mt-2 text-sm"
-            style={{ color: "var(--color-muted-foreground)" }}
-          >
-            A list of all the members in your team including their name, title, email and role.
-          </p>
-        </div>
-        <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-            <Button type="button" variant="secondary">
-                Add member
-            </Button>
-        </div>
-      </div>
+      <PageHeader
+        title="Members"
+        description="A list of all the members in your team including their name, title, email and role."
+        action={<Button type="button" variant="secondary">Add member</Button>}
+      />
       <div className="-mx-4 mt-8 sm:-mx-0">
         <table
           className="min-w-full divide-y"
