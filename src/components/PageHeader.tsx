@@ -41,12 +41,24 @@ export function PageHeader({
     return (
       <div className={`sm:flex sm:items-center ${className ?? ""}`}>
         <div className="sm:flex-auto w-full">
-          <div className="flex flex-row items-center gap-3">
-            {logoUrl && (
+          {/* Mobile: logo centered above content */}
+          {logoUrl && (
+            <div className="flex justify-center mb-2 sm:hidden">
               <img
                 src={logoUrl}
                 alt="Logo"
                 className="rounded object-cover"
+                style={{ width: 62, height: 62, marginRight: 0 }}
+              />
+            </div>
+          )}
+          <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+            {/* Desktop: logo left of content */}
+            {logoUrl && (
+              <img
+                src={logoUrl}
+                alt="Logo"
+                className="rounded object-cover hidden sm:block"
                 style={{ width: 62, height: 62, marginRight: 0 }}
               />
             )}
@@ -59,7 +71,7 @@ export function PageHeader({
               </h1>
               {descriptionItems.length > 0 && (
                 <ul
-                  className="flex flex-row gap-2 pl-0 overflow-x-auto"
+                  className="flex flex-row gap-2 pl-0 overflow-x-auto justify-center sm:justify-start"
                   style={{ paddingLeft: 0 }}
                 >
                   {descriptionItems.map((item, idx) => (
@@ -74,7 +86,7 @@ export function PageHeader({
           </div>
         </div>
         {action && (
-          <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none w-full sm:w-auto">
+          <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none w-full sm:w-auto flex justify-center sm:justify-start">
             {action}
           </div>
         )}
