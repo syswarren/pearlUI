@@ -41,35 +41,37 @@ export function PageHeader({
     return (
       <div className={`sm:flex sm:items-center ${className ?? ""}`}>
         <div className="sm:flex-auto w-full">
-          <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-4">
+          <div className="flex flex-row items-center gap-3">
             {logoUrl && (
               <img
                 src={logoUrl}
                 alt="Logo"
-                className="rounded object-cover mb-2 sm:mb-0"
-                style={{ width: 32, height: 32 }}
+                className="rounded object-cover"
+                style={{ width: 62, height: 62, marginRight: 0 }}
               />
             )}
-            <h1
-              className="text-2xl font-semibold"
-              style={{ color: "var(--color-foreground)" }}
-            >
-              {title}
-            </h1>
+            <div className="flex flex-col gap-2">
+              <h1
+                className="text-2xl font-semibold"
+                style={{ color: "var(--color-foreground)" }}
+              >
+                {title}
+              </h1>
+              {descriptionItems.length > 0 && (
+                <ul
+                  className="flex flex-row gap-2 pl-0 overflow-x-auto"
+                  style={{ paddingLeft: 0 }}
+                >
+                  {descriptionItems.map((item, idx) => (
+                    <li key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <span className="flex items-center justify-center">{item.icon}</span>
+                      <span>{item.label}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
-          {descriptionItems.length > 0 && (
-            <ul
-              className="flex flex-row gap-6 mt-2 pl-0 overflow-x-auto"
-              style={{ paddingLeft: 0, paddingTop: logoUrl ? 0 : undefined }}
-            >
-              {descriptionItems.map((item, idx) => (
-                <li key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <span className="flex items-center justify-center">{item.icon}</span>
-                  <span>{item.label}</span>
-                </li>
-              ))}
-            </ul>
-          )}
         </div>
         {action && (
           <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none w-full sm:w-auto">

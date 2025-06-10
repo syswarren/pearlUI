@@ -1,6 +1,6 @@
 "use client"
 
-import { ChevronRight, type LucideIcon } from "lucide-react"
+import { ChevronRight, Plus, type LucideIcon } from "lucide-react"
 import { usePathname } from "next/navigation"
 import React from "react"
 
@@ -63,7 +63,18 @@ export function NavMain({
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>{label}</SidebarGroupLabel>
+      <div className="flex items-center justify-between" style={{ paddingRight: 4 }}>
+        <SidebarGroupLabel>{label}</SidebarGroupLabel>
+        <button
+          type="button"
+          className="ml-2 flex items-center justify-center rounded-md p-1 hover:bg-sidebar-accent transition-colors"
+          title="New folder"
+          onClick={() => {/* TODO: Implement new folder logic */}}
+        >
+          <Plus className="w-3 h-3 text-muted-foreground" />
+          <span className="sr-only">New folder</span>
+        </button>
+      </div>
       <SidebarMenu>
         {items.map((item) => {
           const active = isFolderActive(item);
