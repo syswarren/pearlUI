@@ -29,9 +29,9 @@ export default function FolderPage() {
       href: item.url,
       author: { name: '', href: '' }, // Not shown
       date: '1d ago', // Placeholder
-      dateTime: new Date().toISOString(), // Placeholder
+      dateTime: '2024-01-01T00:00:00.000Z', // Static placeholder
       status: 'active', // Placeholder
-      totalComments: Math.floor(Math.random() * 20) + 1, // Random placeholder
+      totalComments: 5 + idx, // Static placeholder
       commenters,
     };
   });
