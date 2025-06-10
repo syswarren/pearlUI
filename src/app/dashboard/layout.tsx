@@ -50,9 +50,19 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   // Build the breadcrumb items
   const visibleSegments = []
-  if (folderTitle) visibleSegments.push(folderTitle)
-  if (conversationTitle) visibleSegments.push(conversationTitle)
-  if (!folderTitle && breadcrumbSegments.length) visibleSegments.push(formatSegment(breadcrumbSegments[breadcrumbSegments.length - 1]))
+  if (folderTitle) visibleSegments.push({
+    type: conversationTitle ? 'link' : 'page',
+    label: folderTitle,
+    href: `/dashboard/folder/${breadcrumbSegments[1]}`
+  })
+  if (conversationTitle) visibleSegments.push({
+    type: 'page',
+    label: conversationTitle
+  })
+  if (!folderTitle && breadcrumbSegments.length) visibleSegments.push({
+    type: 'page',
+    label: formatSegment(breadcrumbSegments[breadcrumbSegments.length - 1])
+  })
 
   return (
     <SidebarProvider>
@@ -65,15 +75,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <Breadcrumb>
               <BreadcrumbList>
                 {visibleSegments.map((segment, idx) => (
-                  <React.Fragment key={segment}>
+                  <React.Fragment key={segment.label}>
                     <BreadcrumbItem>
-                      {idx === visibleSegments.length - 1 ? (
+                      {segment.type === 'page' ? (
                         <BreadcrumbPage>
-                          {segment}
+                          {segment.label}
                         </BreadcrumbPage>
                       ) : (
-                        <BreadcrumbLink href="#">
-                          {segment}
+                        <BreadcrumbLink href={segment.href}>
+                          {segment.label}
                         </BreadcrumbLink>
                       )}
                     </BreadcrumbItem>

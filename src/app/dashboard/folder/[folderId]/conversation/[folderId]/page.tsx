@@ -1,11 +1,11 @@
-'use client'
+"use client"
 
 import { useParams } from "next/navigation"
 
 export default function FolderConversationPage() {
   const params = useParams<{ folderId: string; conversationId: string }>()
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-h-svh">
       <div className="flex-1">
         <h1>Folder Conversation Page</h1>
         <p>Folder ID: {params.folderId}</p>

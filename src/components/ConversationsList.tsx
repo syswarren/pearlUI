@@ -34,7 +34,7 @@ export default function ConversationsList({ discussions }: { discussions: Discus
             </p>
             <div className="mt-1 flex items-center gap-x-2 text-xs/5 text-muted-foreground">
               <p>
-                <time dateTime={discussion.dateTime}>{discussion.date}</time>
+                <span>Latest message preview...</span>
               </p>
             </div>
           </div>

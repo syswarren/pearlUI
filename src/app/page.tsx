@@ -39,7 +39,7 @@ const pages = [
     title: "Folder Page",
     description: "Organize conversations in folders.",
     icon: Folder,
-    url: "/dashboard/folder/1",
+    url: "/dashboard/folder/acme-corp",
     status: "Ongoing",
   },
   {
@@ -47,7 +47,7 @@ const pages = [
     title: "Conversation Page",
     description: "Collaborate and discuss in conversations.",
     icon: MessageCircle,
-    url: "/dashboard/conversation/1",
+    url: "/conversation/review-proposal",
     status: "To do",
   },
   {
