@@ -72,6 +72,6 @@ export const demoCompany = {
   user: {
     name: "Demo User",
     email: "demo@company.com",
-    avatar: "/avatars/demo.jpg"
+    avatar: "/avatar.jpg"
   }
 }; 

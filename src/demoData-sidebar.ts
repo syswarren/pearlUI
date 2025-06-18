@@ -90,5 +90,5 @@ export const sidebarProjects = [
 export const sidebarUser = {
   name: "Demo User",
   email: "demo@company.com",
-  avatar: "/avatars/demo.jpg"
+  avatar: "/avatar.jpg"
 }; 
