@@ -26,7 +26,6 @@
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tooltip": "^1.2.7",
     "@radix-ui/react-use-controllable-state": "^1.2.2",
-    "@repo/code-block": "^1.0.0",
     "@shikijs/transformers": "^3.6.0",
     "@uidotdev/usehooks": "^2.4.1",
     "class-variance-authority": "^0.7.1",
