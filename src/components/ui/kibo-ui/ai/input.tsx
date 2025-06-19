@@ -98,7 +98,7 @@ export const AIInput = ({ className, ...props }: AIInputProps) => {
       <form
         className={cn(
           'relative flex flex-col w-full bg-white dark:bg-[#2d2f33] pt-5 pl-5 pr-5 pb-3 ring-offset-background transition-colors shadow-[0px_4px_6px_0px_rgba(17,_12,_46,_0.15)] dark:shadow-none min-h-[120px]',
-          isMobile ? "rounded-t-3xl w-screen max-w-none px-4 text-sm" : "rounded-3xl",
+          isMobile ? "rounded-t-3xl w-screen max-w-none px-4 text-base" : "rounded-3xl",
           className
         )}
         {...props}
@@ -185,7 +185,7 @@ export const AIInputTextarea = ({
         'bg-transparent dark:bg-transparent',
         'focus-visible:ring-0',
         'min-h-[80px]',
-        isMobile ? 'text-sm' : 'text-base',
+        isMobile ? 'text-base' : 'text-base',
         className
       )}
       onChange={handleChange}
