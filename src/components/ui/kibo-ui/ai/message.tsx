@@ -3,7 +3,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from '@repo/shadcn-ui/components/ui/avatar';
+} from '@/components/ui/avatar';
 import type { ComponentProps, HTMLAttributes } from 'react';
 
 export type AIMessageProps = HTMLAttributes<HTMLDivElement> & {
@@ -13,8 +13,8 @@ export type AIMessageProps = HTMLAttributes<HTMLDivElement> & {
 export const AIMessage = ({ className, from, ...props }: AIMessageProps) => (
   <div
     className={cn(
-      'group flex w-full items-end justify-end gap-2 py-4',
-      from === 'user' ? 'is-user' : 'is-assistant flex-row-reverse justify-end',
+      'group flex w-full items-end gap-2 py-4',
+      from === 'user' ? 'justify-end is-user' : 'justify-start is-assistant',
       '[&>div]:max-w-[80%]',
       className
     )}
@@ -31,9 +31,11 @@ export const AIMessageContent = ({
 }: AIMessageContentProps) => (
   <div
     className={cn(
-      'flex flex-col gap-2 rounded-lg px-4 py-3 text-sm',
+      'flex flex-col gap-2 rounded-3xl px-4 py-3 text-sm',
       'bg-muted text-foreground',
-      'group-[.is-user]:bg-primary group-[.is-user]:text-primary-foreground',
+      'group-[.is-user]:bg-[var(--user-message-background)] group-[.is-user]:text-[var(--user-message-foreground)]',
+      'group-[.is-assistant]:bg-gradient-to-r group-[.is-assistant]:from-[#EEF0FC] group-[.is-assistant]:to-[#FFFFFF]',
+      'dark:group-[.is-assistant]:from-[#303236] dark:group-[.is-assistant]:to-[#242629]',
       className
     )}
     {...props}

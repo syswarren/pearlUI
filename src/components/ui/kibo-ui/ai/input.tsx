@@ -78,7 +78,7 @@ export const AIInput = ({ className, ...props }: AIInputProps) => (
     {/* Main content */}
     <form
       className={cn(
-        'relative flex flex-col w-full rounded-3xl bg-white dark:bg-[#2d2f33] p-5 text-sm ring-offset-background transition-colors shadow-[0px_4px_6px_0px_rgba(17,_12,_46,_0.15)] dark:shadow-none min-h-[120px]',
+        'relative flex flex-col w-full rounded-3xl bg-white dark:bg-[#2d2f33] pt-5 pl-5 pr-5 pb-3 text-sm ring-offset-background transition-colors shadow-[0px_4px_6px_0px_rgba(17,_12,_46,_0.15)] dark:shadow-none min-h-[120px]',
         className
       )}
       {...props}
@@ -95,6 +95,7 @@ export const AIInputTextarea = ({
   onChange,
   className,
   placeholder = 'What would you like to know?',
+  value,
   ...props
 }: AIInputTextareaProps) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -111,17 +112,41 @@ export const AIInputTextarea = ({
     textarea.style.height = `${newHeight}px`;
   }, []);
 
+  // Reset height when value changes (e.g., when message is sent and input is cleared)
+  useEffect(() => {
+    if (!value || value === '') {
+      const textarea = textareaRef.current;
+      if (textarea) {
+        textarea.style.height = '80px';
+      }
+    }
+  }, [value]);
+
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     adjustHeight();
     onChange?.(e);
   };
 
   const handleKeyDown: KeyboardEventHandler<HTMLTextAreaElement> = (e) => {
-    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
-      e.preventDefault();
-      const form = e.currentTarget.form;
-      if (form) {
-        form.requestSubmit();
+    if (e.key === 'Enter') {
+      if (e.shiftKey) {
+        // Allow Shift+Enter for new lines
+        return;
+      }
+      if (e.metaKey || e.ctrlKey) {
+        // Cmd/Ctrl+Enter also works
+        e.preventDefault();
+        const form = e.currentTarget.form;
+        if (form) {
+          form.requestSubmit();
+        }
+      } else {
+        // Just Enter sends the message
+        e.preventDefault();
+        const form = e.currentTarget.form;
+        if (form) {
+          form.requestSubmit();
+        }
       }
     }
   };
@@ -131,6 +156,7 @@ export const AIInputTextarea = ({
       name="message"
       placeholder={placeholder}
       ref={textareaRef}
+      value={value}
       className={cn(
         'w-full resize-none rounded-none border-none p-0 shadow-none outline-none ring-0',
         'bg-transparent dark:bg-transparent',

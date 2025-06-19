@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { Button } from '@repo/shadcn-ui/components/ui/button';
+import { Button } from '@/components/ui/button';
 import { ArrowDownIcon } from 'lucide-react';
 import type { ComponentProps } from 'react';
 import { useCallback } from 'react';
@@ -14,7 +14,14 @@ export const AIConversation = ({
   ...props
 }: AIConversationProps) => (
   <StickToBottom
-    className={cn('relative flex-1 overflow-y-auto', className)}
+    className={cn(
+      'relative flex-1 overflow-y-auto',
+      'scrollbar-hide',
+      '[&::-webkit-scrollbar]:hidden',
+      '[-ms-overflow-style:none]',
+      '[scrollbar-width:none]',
+      className
+    )}
     resize="smooth"
     initial="smooth"
     role="log"

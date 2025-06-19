@@ -78,6 +78,9 @@
   --sidebar-border: rgb(229, 231, 235);
   --sidebar-ring: rgb(153, 161, 175);
   --logo-filter: brightness(0.1);
+  --user-message-background: rgba(216, 218, 234);
+  --user-message-foreground: rgba(3, 7, 18);
+
 }
 
 .dark {
@@ -115,6 +118,8 @@
   --sidebar-border: rgba(39, 40, 42, 1);
   --sidebar-ring: rgba(244, 245, 245, 1);
   --logo-filter: none;
+  --user-message-background: rgba(79, 82, 87);
+  --user-message-foreground: rgb(255, 255, 255);
 }
 
 @layer base {
