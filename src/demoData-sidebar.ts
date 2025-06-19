@@ -1,4 +1,4 @@
-import { Users, FileText, Calendar, Folder, House } from "lucide-react";
+import { Users, FileText, Calendar, Folder, House, Globe } from "lucide-react";
 
 export const sidebarMainNavTitle = "Main nav";
 export const sidebarMenuTitle = "Folders";
@@ -14,6 +14,11 @@ export const sidebarMainNav = [
       name: "Calendar",
       url: "/dashboard/calendar",
       icon: Calendar,
+    },
+    {
+      name: "Territory",
+      url: "/dashboard/territory",
+      icon: Globe,
     },
     {
       name: "Documents",

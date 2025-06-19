@@ -1,5 +1,5 @@
 import { Feature67 } from "@/components/ui/feature67";
-import { House, Calendar, FileText, Users, Folder, MessageCircle, KeyRound } from "lucide-react";
+import { House, Calendar, FileText, Users, Folder, MessageCircle, KeyRound, Globe } from "lucide-react";
 
 const pages = [
   {
@@ -16,6 +16,14 @@ const pages = [
     description: "See your schedule and upcoming events.",
     icon: Calendar,
     url: "/dashboard/calendar",
+    status: "Ongoing",
+  },
+  {
+    id: "territory",
+    title: "Territory",
+    description: "Manage and view territory information.",
+    icon: Globe,
+    url: "/dashboard/territory",
     status: "Ongoing",
   },
   {
