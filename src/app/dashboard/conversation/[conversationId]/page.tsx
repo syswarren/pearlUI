@@ -13,6 +13,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { sampleConversations, type ConversationMessage } from "@/demoData"
+import { useIsMobile } from "@/hooks/use-mobile"
+import { cn } from "@/lib/utils"
 
 interface Message {
   id: string
@@ -27,6 +29,7 @@ export default function StandaloneConversationPage() {
   const [inputValue, setInputValue] = useState("")
   const [selectedModel, setSelectedModel] = useState("GPT-4")
   const [isLoading, setIsLoading] = useState(false)
+  const isMobile = useIsMobile()
 
   // Load sample conversation data if available
   useEffect(() => {
@@ -86,12 +89,23 @@ export default function StandaloneConversationPage() {
   }
 
   return (
-    <div className="flex h-[calc(90vh+64px)] flex-col -mt-4 -mx-4" style={{ marginTop: '-64px' }}>
+    <div className={cn(
+      "flex flex-col",
+      isMobile 
+        ? "h-screen -mt-4 -mx-4" 
+        : "h-[calc(90vh+64px)] -mt-4 -mx-4"
+    )} style={{ marginTop: isMobile ? '-64px' : '-64px' }}>
       {/* Messages area - scrollable and extends under breadcrumb */}
-      <div className="flex-1 overflow-hidden flex justify-center">
+      <div className={cn(
+        "flex overflow-hidden flex justify-center",
+        isMobile ? "flex-1 pb-0" : "flex-1"
+      )}>
         <div className="w-full max-w-[740px]">
           <AIConversation className="h-full">
-            <AIConversationContent className="pt-4 pb-4">
+            <AIConversationContent className={cn(
+              "pt-4",
+              isMobile ? "pb-0" : "pb-4"
+            )}>
               {messages.map((message, index) => (
                 <AIMessage 
                   key={message.id} 
@@ -119,10 +133,17 @@ export default function StandaloneConversationPage() {
         </div>
       </div>
 
-      {/* Input area - fixed at bottom with 20px margin */}
-      <div className="flex justify-center mb-5 px-4">
+      {/* Input area - fixed at bottom with conditional styling for mobile */}
+      <div className={cn(
+        "flex justify-center px-4",
+        isMobile 
+          ? "fixed bottom-0 left-0 right-0 bg-background" 
+          : "mb-5"
+      )}>
         <div className="w-full max-w-[740px]">
-          <AIInput onSubmit={handleSubmit}>
+          <AIInput 
+            onSubmit={handleSubmit}
+          >
             <AIInputTextarea
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}

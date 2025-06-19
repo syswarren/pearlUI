@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
 import { Loader2Icon, SendIcon } from 'lucide-react';
-import { Children, useCallback, useEffect, useRef } from 'react';
+import { Children, useCallback, useEffect, useRef, useState } from 'react';
 import type {
   ComponentProps,
   HTMLAttributes,
@@ -69,22 +69,40 @@ const useAutoResizeTextarea = ({
 
 export type AIInputProps = HTMLAttributes<HTMLFormElement>;
 
-export const AIInput = ({ className, ...props }: AIInputProps) => (
-  <div className="relative p-[1px] min-h-[120px]">
-    {/* Gradient border background */}
-    <div 
-      className="absolute inset-0 rounded-3xl [background-size:100%_100%] [background-position:0px_0px,0px_0px] [background-image:linear-gradient(0deg,#FFFFFFFF_90%,#FFFFFF00_100%),linear-gradient(90deg,#B5BDEDFF_1%,#FFC3A8FF_100%)] dark:[background-image:linear-gradient(0deg,#242629_90%,#24262900_100%),linear-gradient(90deg,#9DA6D7FF_0%,#DD9E7DFF_99%)]" 
-    />
-    {/* Main content */}
-    <form
-      className={cn(
-        'relative flex flex-col w-full rounded-3xl bg-white dark:bg-[#2d2f33] pt-5 pl-5 pr-5 pb-3 text-sm ring-offset-background transition-colors shadow-[0px_4px_6px_0px_rgba(17,_12,_46,_0.15)] dark:shadow-none min-h-[120px]',
-        className
-      )}
-      {...props}
-    />
-  </div>
-);
+export const AIInput = ({ className, ...props }: AIInputProps) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  return (
+    <div className="relative p-[1px] min-h-[120px]">
+      {/* Gradient border background */}
+      <div 
+        className={cn(
+          "absolute inset-0 [background-size:100%_100%] [background-position:0px_0px,0px_0px] [background-image:linear-gradient(0deg,#FFFFFFFF_90%,#FFFFFF00_100%),linear-gradient(90deg,#B5BDEDFF_1%,#FFC3A8FF_100%)] dark:[background-image:linear-gradient(0deg,#242629_90%,#24262900_100%),linear-gradient(90deg,#9DA6D7FF_0%,#DD9E7DFF_99%)]",
+          isMobile ? "rounded-t-3xl" : "rounded-3xl"
+        )}
+      />
+      {/* Main content */}
+      <form
+        className={cn(
+          'relative flex flex-col w-full bg-white dark:bg-[#2d2f33] pt-5 pl-5 pr-5 pb-3 text-sm ring-offset-background transition-colors shadow-[0px_4px_6px_0px_rgba(17,_12,_46,_0.15)] dark:shadow-none min-h-[120px]',
+          isMobile ? "rounded-t-3xl" : "rounded-3xl",
+          className
+        )}
+        {...props}
+      />
+    </div>
+  );
+};
 
 export type AIInputTextareaProps = ComponentProps<typeof Textarea> & {
   minHeight?: number;
