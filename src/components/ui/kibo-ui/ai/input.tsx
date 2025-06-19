@@ -83,7 +83,10 @@ export const AIInput = ({ className, ...props }: AIInputProps) => {
   }, []);
   
   return (
-    <div className="relative p-[1px] min-h-[120px]">
+    <div className={cn(
+      "relative p-[1px] min-h-[120px]",
+      isMobile && "w-screen max-w-none left-1/2 -translate-x-1/2 fixed bottom-0 z-50"
+    )}>
       {/* Gradient border background */}
       <div 
         className={cn(
@@ -94,8 +97,8 @@ export const AIInput = ({ className, ...props }: AIInputProps) => {
       {/* Main content */}
       <form
         className={cn(
-          'relative flex flex-col w-full bg-white dark:bg-[#2d2f33] pt-5 pl-5 pr-5 pb-3 text-sm ring-offset-background transition-colors shadow-[0px_4px_6px_0px_rgba(17,_12,_46,_0.15)] dark:shadow-none min-h-[120px]',
-          isMobile ? "rounded-t-3xl" : "rounded-3xl",
+          'relative flex flex-col w-full bg-white dark:bg-[#2d2f33] pt-5 pl-5 pr-5 pb-3 ring-offset-background transition-colors shadow-[0px_4px_6px_0px_rgba(17,_12,_46,_0.15)] dark:shadow-none min-h-[120px]',
+          isMobile ? "rounded-t-3xl w-screen max-w-none px-4 text-sm" : "rounded-3xl",
           className
         )}
         {...props}
@@ -117,20 +120,25 @@ export const AIInputTextarea = ({
   ...props
 }: AIInputTextareaProps) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const adjustHeight = useCallback(() => {
     const textarea = textareaRef.current;
     if (!textarea) return;
-
-    // Reset height to get the correct scrollHeight
     textarea.style.height = '80px';
-    
-    // Calculate new height, max 300px
     const newHeight = Math.min(textarea.scrollHeight, 300);
     textarea.style.height = `${newHeight}px`;
   }, []);
 
-  // Reset height when value changes (e.g., when message is sent and input is cleared)
   useEffect(() => {
     if (!value || value === '') {
       const textarea = textareaRef.current;
@@ -148,18 +156,15 @@ export const AIInputTextarea = ({
   const handleKeyDown: KeyboardEventHandler<HTMLTextAreaElement> = (e) => {
     if (e.key === 'Enter') {
       if (e.shiftKey) {
-        // Allow Shift+Enter for new lines
         return;
       }
       if (e.metaKey || e.ctrlKey) {
-        // Cmd/Ctrl+Enter also works
         e.preventDefault();
         const form = e.currentTarget.form;
         if (form) {
           form.requestSubmit();
         }
       } else {
-        // Just Enter sends the message
         e.preventDefault();
         const form = e.currentTarget.form;
         if (form) {
@@ -179,8 +184,8 @@ export const AIInputTextarea = ({
         'w-full resize-none rounded-none border-none p-0 shadow-none outline-none ring-0',
         'bg-transparent dark:bg-transparent',
         'focus-visible:ring-0',
-        'text-base',
         'min-h-[80px]',
+        isMobile ? 'text-sm' : 'text-base',
         className
       )}
       onChange={handleChange}
