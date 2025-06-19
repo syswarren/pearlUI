@@ -110,7 +110,7 @@ export function NavMainNav({
             {!(
               item.name === "Home" ||
               item.name === "Documents" ||
-              item.name === "Activity" ||
+              item.name === "Calendar" ||
               item.name === "Members"
             ) && (
               <DropdownMenu>

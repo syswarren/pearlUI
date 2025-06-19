@@ -1,5 +1,5 @@
 import { Feature67 } from "@/components/ui/feature67";
-import { House, Activity, FileText, Users, Folder, MessageCircle, KeyRound } from "lucide-react";
+import { House, Calendar, FileText, Users, Folder, MessageCircle, KeyRound } from "lucide-react";
 
 const pages = [
   {
@@ -11,11 +11,11 @@ const pages = [
     status: "Ongoing",
   },
   {
-    id: "activity",
-    title: "Activity",
-    description: "See recent activity and updates.",
-    icon: Activity,
-    url: "/dashboard/activity",
+    id: "calendar",
+    title: "Calendar",
+    description: "See your schedule and upcoming events.",
+    icon: Calendar,
+    url: "/dashboard/calendar",
     status: "Ongoing",
   },
   {
@@ -47,7 +47,7 @@ const pages = [
     title: "Conversation Page",
     description: "Collaborate and discuss in conversations.",
     icon: MessageCircle,
-    url: "/conversation/review-proposal",
+    url: "/dashboard/conversation/team-update",
     status: "To do",
   },
   {
