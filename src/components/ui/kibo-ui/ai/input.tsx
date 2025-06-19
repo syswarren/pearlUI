@@ -87,6 +87,13 @@ export const AIInput = ({ className, ...props }: AIInputProps) => {
       "relative p-[1px] min-h-[120px]",
       isMobile && "w-screen max-w-none left-1/2 -translate-x-1/2 fixed bottom-0 z-50"
     )}>
+      {/* Upward shadow behind gradient */}
+      <div 
+        className={cn(
+          "absolute inset-0 -top-8 h-8 bg-gradient-to-t from-background to-transparent",
+          isMobile ? "rounded-t-3xl" : "rounded-3xl"
+        )}
+      />
       {/* Gradient border background */}
       <div 
         className={cn(
@@ -97,7 +104,7 @@ export const AIInput = ({ className, ...props }: AIInputProps) => {
       {/* Main content */}
       <form
         className={cn(
-          'relative flex flex-col w-full bg-white dark:bg-[#2d2f33] pt-5 pl-5 pr-5 pb-3 ring-offset-background transition-colors shadow-[0px_4px_6px_0px_rgba(17,_12,_46,_0.15)] dark:shadow-none min-h-[120px]',
+          'relative flex flex-col w-full bg-white dark:bg-[#2d2f33] pt-5 pl-5 pr-5 pb-3 ring-offset-background transition-colors shadow-[0px_1px_3px_0px_rgba(17,_12,_46,_0.15)] dark:shadow-none min-h-[120px]',
           isMobile ? "rounded-t-3xl w-screen max-w-none px-4 text-base" : "rounded-3xl",
           className
         )}
@@ -238,7 +245,7 @@ export const AIInputButton = React.forwardRef<
         'transition-colors',
         'disabled:opacity-50 disabled:pointer-events-none',
         variant === 'default' && [
-          'bg-primary text-primary-foreground hover:bg-primary/90',
+          'bg-[rgb(228,230,241)] text-foreground hover:bg-[rgb(228,230,241)]/80',
           'dark:bg-[var(--card)] dark:text-white dark:hover:bg-[var(--card)]/90'
         ],
         variant === 'ghost' && [

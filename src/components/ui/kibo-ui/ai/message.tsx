@@ -34,7 +34,7 @@ export const AIMessageContent = ({
       'flex flex-col gap-2 rounded-3xl px-4 py-3 text-sm',
       'bg-muted text-foreground',
       'group-[.is-user]:bg-[var(--user-message-background)] group-[.is-user]:text-[var(--user-message-foreground)]',
-      'group-[.is-assistant]:bg-gradient-to-r group-[.is-assistant]:from-[#EEF0FC] group-[.is-assistant]:to-[#FFFFFF]',
+      'group-[.is-assistant]:bg-gradient-to-r group-[.is-assistant]:from-[#EEF0FC] group-[.is-assistant]:to-[rgb(246,247,253)]',
       'dark:group-[.is-assistant]:from-[#303236] dark:group-[.is-assistant]:to-[#242629]',
       className
     )}

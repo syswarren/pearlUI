@@ -45,7 +45,7 @@
 
 :root {
   --radius: 0.625rem;
-  --background: rgb(255, 255, 255);
+  --background: rgb(246, 247, 253);
   --foreground: rgb(3, 7, 18);
   --card: rgb(255, 255, 255);
   --card-foreground: rgb(3, 7, 18);
@@ -80,6 +80,8 @@
   --logo-filter: brightness(0.1);
   --user-message-background: rgba(216, 218, 234);
   --user-message-foreground: rgba(3, 7, 18);
+  --incoming-message-background: rgb(238, 240, 252);
+  --incoming-message-foreground: rgb(3, 7, 18);
 
 }
 

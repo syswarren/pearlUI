@@ -111,7 +111,8 @@ export function NavMainNav({
               item.name === "Home" ||
               item.name === "Documents" ||
               item.name === "Calendar" ||
-              item.name === "Members"
+              item.name === "Members" ||
+              item.name === "Territory"
             ) && (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
