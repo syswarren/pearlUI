@@ -53,14 +53,14 @@
   --popover-foreground: rgb(3, 7, 18);
   --primary: rgb(24, 24, 27);
   --primary-foreground: rgb(249, 250, 251);
-  --secondary: rgb(231, 235, 241);
+  --secondary: rgb(199, 205, 215);
   --secondary-foreground: rgb(16, 24, 40);
   --muted: rgb(243, 244, 246);
   --muted-foreground: rgb(106, 114, 130);
   --accent: rgb(243, 244, 246);
   --accent-foreground: rgb(16, 24, 40);
   --destructive: rgb(231, 0, 11);
-  --border: rgb(229, 231, 235);
+  --border: rgb(214, 214, 218);
   --input: rgb(255, 255, 255);
   --ring: rgb(153, 161, 175);
   --chart-1: rgb(245, 74, 0);
@@ -88,9 +88,9 @@
 .dark {
   --background: rgba(36, 38, 41, 1);
   --foreground: rgba(250, 250, 250, 1);
-  --card: rgba(45, 48, 52, 1);
+  --card: rgb(37, 40, 43);
   --card-foreground: rgba(250, 250, 250, 1);
-  --popover: rgba(9, 10, 10, 1);
+  --popover: rgb(27, 29, 31);
   --popover-foreground: rgba(250, 250, 250, 1);
   --primary: rgba(250, 250, 250, 1);
   --primary-foreground: rgba(23, 23, 23, 1);
@@ -103,7 +103,7 @@
   --destructive: rgba(153, 40, 40, 1);
   --destructive-foreground: rgba(250, 250, 250, 1);
   --border: rgba(32, 33, 36, 1);
-  --input: rgb(75, 78, 85);
+  --input: rgb(55, 57, 63);
   --ring: rgba(212, 212, 212, 1);
   --chart-1: rgba(38, 128, 217, 1);
   --chart-2: rgba(46, 163, 115, 1);

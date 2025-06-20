@@ -246,11 +246,11 @@ export const AIInputButton = React.forwardRef<
         'disabled:opacity-50 disabled:pointer-events-none',
         variant === 'default' && [
           'bg-[rgb(228,230,241)] text-foreground hover:bg-[rgb(228,230,241)]/80',
-          'dark:bg-[var(--card)] dark:text-white dark:hover:bg-[var(--card)]/90'
+          'dark:bg-[rgba(24,25,26,1)] dark:text-white dark:hover:bg-[rgba(39,40,42,1)]'
         ],
         variant === 'ghost' && [
           'hover:bg-accent hover:text-accent-foreground',
-          'dark:hover:bg-[var(--card)] dark:hover:text-primary-foreground'
+          'dark:hover:bg-[rgba(24,25,26,1)] dark:hover:text-white'
         ],
         className
       )}
