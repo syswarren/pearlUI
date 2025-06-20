@@ -25,12 +25,6 @@ export const sidebarMainNav = [
       url: "/dashboard/documents",
       icon: FileText,
     },
-    {
-      name: "Members",
-      url: "/dashboard/members",
-      icon: Users,
-    },
-  
   ];
   
 

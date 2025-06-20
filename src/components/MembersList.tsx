@@ -1,6 +1,10 @@
-import React from "react";
+"use client"
+
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import PageHeader from "@/components/PageHeader";
+import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
+import EditMemberDialog from "./EditMemberDialog";
 
 export type Member = {
   name: string;
@@ -14,14 +18,35 @@ interface MembersListProps {
 }
 
 export default function MembersList({ people }: MembersListProps) {
+  const [selectedMember, setSelectedMember] = useState<Member | null>(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  const handleEditClick = (member: Member) => {
+    setSelectedMember(member);
+    setDialogOpen(true);
+  };
+
   return (
-    <div className="px-4 mt-4 sm:px-6 mt-6 lg:px-8 mt-8">
-      <PageHeader
-        title="Members"
-        description="A list of all the members in your team including their name, title, email and role."
-        action={<Button type="button" variant="secondary">Add member</Button>}
-      />
-      <div className="-mx-4 mt-8 sm:-mx-0">
+    <div className="space-y-4">
+      <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4">
+        <div>
+          <h3 className="text-lg font-medium">Team Members</h3>
+          <p className="text-sm text-muted-foreground">Manage team members, roles, and permissions.</p>
+        </div>
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              type="search"
+              placeholder="Search members..."
+              className="w-full sm:w-64 pl-10"
+            />
+          </div>
+          <Button type="button" variant="secondary">Add member</Button>
+        </div>
+      </div>
+      
+      <div className="-mx-4 sm:-mx-0">
         <table
           className="min-w-full divide-y"
           style={{ borderColor: "var(--color-border)" }}
@@ -110,19 +135,26 @@ export default function MembersList({ people }: MembersListProps) {
                 >
                   {person.role}
                 </td>
-                <td className="py-4 pr-4 pl-3 text-right text-sm font-medium sm:pr-0">
-                  <a
-                    href="#"
+                <td className="py-4 pr-4 pl-3 text-right text-sm font-medium sm:pr-1">
+                  <button
+                    onClick={() => handleEditClick(person)}
                     style={{ color: "var(--color-primary)" }}
+                    className="hover:underline"
                   >
                     Edit<span className="sr-only">, {person.name}</span>
-                  </a>
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+
+      <EditMemberDialog
+        member={selectedMember}
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+      />
     </div>
   );
 } 
