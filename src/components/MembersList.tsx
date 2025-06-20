@@ -27,10 +27,10 @@ export default function MembersList({ people }: MembersListProps) {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4">
-        <div>
-          <h3 className="text-lg font-medium">Team Members</h3>
+        <div className="space-y-1">
+          <h3 className="text-lg font-semibold">Team members</h3>
           <p className="text-sm text-muted-foreground">Manage team members, roles, and permissions.</p>
         </div>
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">

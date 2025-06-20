@@ -15,22 +15,24 @@ export default function Form() {
           </p>
         </div>
         <div className="space-y-6 w-full lg:w-120">
-          <div className="space-y-2">
+          <div>
             <label className="text-sm font-medium" htmlFor="displayName">
               Display name
             </label>
             <Input
               id="displayName"
               defaultValue="Demo User"
+              className="mt-1"
             />
           </div>
-          <div className="space-y-2">
+          <div>
             <label className="text-sm font-medium" htmlFor="email">
               Email address
             </label>
             <Input
               id="email"
               defaultValue="demo@company.com"
+              className="mt-1"
             />
           </div>
           <Button>Save</Button>
@@ -47,7 +49,7 @@ export default function Form() {
           </p>
         </div>
         <div className="space-y-6 w-full lg:w-120">
-          <div className="space-y-2">
+          <div>
             <label className="text-sm font-medium" htmlFor="currentPassword">
               Current password
             </label>
@@ -55,24 +57,27 @@ export default function Form() {
               id="currentPassword"
               type="password"
               defaultValue="*******************"
+              className="mt-1"
             />
           </div>
-          <div className="space-y-2">
+          <div>
             <label className="text-sm font-medium" htmlFor="newPassword">
               New password
             </label>
             <Input
               id="newPassword"
               type="password"
+              className="mt-1"
             />
           </div>
-          <div className="space-y-2">
+          <div>
             <label className="text-sm font-medium" htmlFor="confirmPassword">
               Confirm new password
             </label>
             <Input
               id="confirmPassword"
               type="password"
+              className="mt-1"
             />
           </div>
           <Button>Save</Button>

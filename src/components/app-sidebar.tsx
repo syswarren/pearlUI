@@ -13,6 +13,7 @@ import {
   Settings2,
   SquareTerminal,
   SquarePen,
+  Search,
 } from "lucide-react"
 import Image from "next/image"
 
@@ -20,6 +21,7 @@ import { NavMain } from "@/components/nav-main"
 import { NavProjects } from "@/components/nav-projects"
 import { NavSecondary } from "@/components/nav-secondary"
 import { NavUser } from "@/components/nav-user"
+import { CommandPalette } from "@/components/command-palette"
 import {
   Sidebar,
   SidebarContent,
@@ -34,44 +36,60 @@ import { NavMainNav } from "@/components/nav-projects"
 import { demoCompany } from "@/demoData"
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const [commandOpen, setCommandOpen] = React.useState(false)
+
   return (
-    <Sidebar variant="inset" {...props}>
-      <SidebarHeader>
-        <div className="flex items-center justify-between">
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton size="lg" asChild>
-                <a href="#">
-                  <div className="flex aspect-square size-7 items-center justify-center">
-                    <Image src="/pearl-logo.svg" alt="Pearl Logo" width={28} height={28} className="size-7" style={{ filter: 'var(--logo-filter)' }} />
-                  </div>
-                  <div className="grid flex-1 text-left text-sm leading-tight">
-                    <span className="truncate font-medium">Pearl</span>
-                    <span className="truncate text-xs opacity-60">Alpha</span>
-                  </div>
-                </a>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-          <button
-            type="button"
-            className="ml-2 flex items-center justify-center rounded-md p-1 hover:bg-sidebar-accent transition-colors"
-            title="New conversation"
-            onClick={() => {/* TODO: Implement new conversation logic */}}
-          >
-            <SquarePen className="w-4 h-4" />
-            <span className="sr-only">New conversation</span>
-          </button>
-        </div>
-      </SidebarHeader>
-      <SidebarContent>
-        <NavMainNav items={sidebarMainNav} label={sidebarMainNavTitle} hideLabel={true} />
-        <NavMain items={sidebarMenu} label={sidebarMenuTitle} />
-        <NavProjects projects={sidebarProjects} label={sidebarProjectsTitle} />
-      </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={sidebarUser} />
-      </SidebarFooter>
-    </Sidebar>
+    <>
+      <Sidebar variant="inset" {...props}>
+        <SidebarHeader>
+          <div className="flex items-center justify-between">
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton size="lg" asChild>
+                  <a href="#">
+                    <div className="flex aspect-square size-7 items-center justify-center">
+                      <Image src="/pearl-logo.svg" alt="Pearl Logo" width={28} height={28} className="size-7" style={{ filter: 'var(--logo-filter)' }} />
+                    </div>
+                    <div className="grid flex-1 text-left text-sm leading-tight">
+                      <span className="truncate font-medium">Pearl</span>
+                      <span className="truncate text-xs opacity-60">Alpha</span>
+                    </div>
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+            <div className="flex items-center gap-1">
+              <button
+                type="button"
+                className="flex items-center justify-center rounded-md p-1 hover:bg-sidebar-accent transition-colors"
+                title="Search"
+                onClick={() => setCommandOpen(true)}
+              >
+                <Search className="w-4 h-4" />
+                <span className="sr-only">Search</span>
+              </button>
+              <button
+                type="button"
+                className="flex items-center justify-center rounded-md p-1 hover:bg-sidebar-accent transition-colors"
+                title="New conversation"
+                onClick={() => {/* TODO: Implement new conversation logic */}}
+              >
+                <SquarePen className="w-4 h-4" />
+                <span className="sr-only">New conversation</span>
+              </button>
+            </div>
+          </div>
+        </SidebarHeader>
+        <SidebarContent>
+          <NavMainNav items={sidebarMainNav} label={sidebarMainNavTitle} hideLabel={true} />
+          <NavMain items={sidebarMenu} label={sidebarMenuTitle} />
+          <NavProjects projects={sidebarProjects} label={sidebarProjectsTitle} />
+        </SidebarContent>
+        <SidebarFooter>
+          <NavUser user={sidebarUser} />
+        </SidebarFooter>
+      </Sidebar>
+      <CommandPalette open={commandOpen} onOpenChange={setCommandOpen} />
+    </>
   )
 }

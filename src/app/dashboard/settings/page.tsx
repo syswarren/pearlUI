@@ -5,6 +5,7 @@ import PageHeader from "@/components/PageHeader";
 import Form from "@/components/Form";
 import NotificationsForm from "@/components/NotificationsForm";
 import MembersList, { Member } from "@/components/MembersList";
+import { IntegrationsList } from "@/components/IntegrationsList";
 
 const people: Member[] = [
   { name: 'Sarah Wilson', title: 'CRO', email: 'sarah.wilson@company.com', role: 'Admin' },
@@ -34,7 +35,7 @@ const navigationItems = [
   { id: 'account', label: 'Account' },
   { id: 'notifications', label: 'Notifications' },
   { id: 'integrations', label: 'Integrations' },
-  { id: 'team', label: 'Team Management' },
+  { id: 'team', label: 'Team members' },
 ];
 
 export default function SettingsPage() {
@@ -47,12 +48,7 @@ export default function SettingsPage() {
       case 'notifications':
         return <NotificationsForm />;
       case 'integrations':
-        return (
-          <div className="space-y-4">
-            <h3 className="text-lg font-medium">Integrations</h3>
-            <p className="text-muted-foreground">Connect and manage third-party integrations.</p>
-          </div>
-        );
+        return <IntegrationsList />;
       case 'team':
         return <MembersList people={people} />;
       default:
@@ -93,7 +89,7 @@ export default function SettingsPage() {
           </div>
         </div>
         
-        <div className="px-4 mt-6 sm:px-6 lg:px-8">
+        <div className="px-4 mt-10 sm:px-6 lg:px-8 pb-12">
           {renderContent()}
         </div>
       </div>

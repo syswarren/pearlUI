@@ -88,7 +88,7 @@
 .dark {
   --background: rgba(36, 38, 41, 1);
   --foreground: rgba(250, 250, 250, 1);
-  --card: rgba(9, 10, 10, 1);
+  --card: rgba(45, 48, 52, 1);
   --card-foreground: rgba(250, 250, 250, 1);
   --popover: rgba(9, 10, 10, 1);
   --popover-foreground: rgba(250, 250, 250, 1);
@@ -156,4 +156,26 @@
     radial-gradient(80% 50% at 104% 12%, #FFAC8652 40%, #073AFF00 100%),
     radial-gradient(74% 50% at 0% 14%, #97A0D357 40%, #073AFF00 100%),
     linear-gradient(125deg, #1A1B1F 0%, #1A1B1F 100%);
+}
+
+/* Line clamp utilities */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
