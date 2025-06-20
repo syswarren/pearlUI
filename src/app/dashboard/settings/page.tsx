@@ -1,6 +1,8 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import PageHeader from "@/components/PageHeader";
 import Form from "@/components/Form";
 import NotificationsForm from "@/components/NotificationsForm";
@@ -32,14 +34,21 @@ const people: Member[] = [
 ];
 
 const navigationItems = [
-  { id: 'account', label: 'Account' },
-  { id: 'notifications', label: 'Notifications' },
-  { id: 'integrations', label: 'Integrations' },
-  { id: 'team', label: 'Team members' },
+  { id: 'account', label: 'Account', href: '/dashboard/settings' },
+  { id: 'notifications', label: 'Notifications', href: '/dashboard/settings' },
+  { id: 'integrations', label: 'Integrations', href: '/dashboard/settings' },
+  { id: 'team', label: 'Team members', href: '/dashboard/settings' },
 ];
 
 export default function SettingsPage() {
+  const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState('account');
+
+  // Get the active tab from URL or default to 'account'
+  useEffect(() => {
+    const tab = searchParams.get('tab') || 'account';
+    setActiveTab(tab);
+  }, [searchParams]);
 
   const renderContent = () => {
     switch (activeTab) {
@@ -62,14 +71,14 @@ export default function SettingsPage() {
         <PageHeader variant="minimal" title="Settings" />
       </div>
       
-      <div className="mt-6">
+      <div className="mt-10">
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="border-b border-border">
             <div className="flex w-full overflow-x-auto scrollbar-hide">
               {navigationItems.map((item, index) => (
-                <button
+                <Link
                   key={item.id}
-                  onClick={() => setActiveTab(item.id)}
+                  href={`${item.href}?tab=${item.id}`}
                   className={`
                     flex-shrink-0 py-3 text-sm font-medium transition-colors relative
                     ${index === 0 ? 'ml-0 mr-4' : 'mx-4'}
@@ -83,7 +92,7 @@ export default function SettingsPage() {
                   {activeTab === item.id && (
                     <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"></div>
                   )}
-                </button>
+                </Link>
               ))}
             </div>
           </div>
