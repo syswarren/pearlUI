@@ -1,8 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Search, Filter, X, CheckCircle, AlertCircle, Clock, Unplug } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
+import { Search, Filter, X, Unplug } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -51,36 +50,6 @@ export function IntegrationsList({
   // Separate active and available integrations
   const activeIntegrations = filteredIntegrations.filter(integration => integration.isConnected)
   const availableIntegrations = filteredIntegrations.filter(integration => !integration.isConnected)
-
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'active':
-        return <CheckCircle className="w-4 h-4 text-green-500" />
-      case 'error':
-        return <AlertCircle className="w-4 h-4 text-red-500" />
-      case 'pending':
-        return <Clock className="w-4 h-4 text-yellow-500" />
-      default:
-        return null
-    }
-  }
-
-  const formatLastSync = (lastSync?: string) => {
-    if (!lastSync) return null
-    const date = new Date(lastSync)
-    const now = new Date()
-    const diffInHours = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60))
-    
-    if (diffInHours < 1) return 'Just now'
-    if (diffInHours < 24) {
-      // Check if it's the same day
-      const isSameDay = date.toDateString() === now.toDateString()
-      if (isSameDay) return 'Today'
-      return `${diffInHours}h ago`
-    }
-    const diffInDays = Math.floor(diffInHours / 24)
-    return `${diffInDays}d ago`
-  }
 
   const clearFilters = () => {
     setSearchTerm("")
@@ -171,8 +140,6 @@ export function IntegrationsList({
                 key={integration.id} 
                 integration={integration} 
                 isActive={true}
-                formatLastSync={formatLastSync}
-                getStatusIcon={getStatusIcon}
               />
             ))}
           </div>
@@ -193,8 +160,6 @@ export function IntegrationsList({
                 key={integration.id} 
                 integration={integration} 
                 isActive={false}
-                formatLastSync={formatLastSync}
-                getStatusIcon={getStatusIcon}
               />
             ))}
           </div>
@@ -208,7 +173,7 @@ export function IntegrationsList({
             <Search className="w-12 h-12 text-muted-foreground mb-4" />
             <h3 className="text-lg font-semibold mb-2">No integrations found</h3>
             <p className="text-muted-foreground text-center mb-4">
-              Try adjusting your search terms or filters to find what you're looking for.
+              Try adjusting your search terms or filters to find what you&apos;re looking for.
             </p>
             <Button variant="outline" onClick={clearFilters}>
               Clear all filters
@@ -223,15 +188,11 @@ export function IntegrationsList({
 interface IntegrationCardProps {
   integration: Integration
   isActive: boolean
-  formatLastSync: (lastSync?: string) => string | null
-  getStatusIcon: (status: string) => React.ReactNode
 }
 
 function IntegrationCard({ 
   integration, 
-  isActive, 
-  formatLastSync, 
-  getStatusIcon
+  isActive
 }: IntegrationCardProps) {
   const isImageIcon = integration.icon.startsWith('/')
   
@@ -276,7 +237,7 @@ function IntegrationCard({
               variant="outline" 
               className="flex-1"
             >
-              Active - last sync {formatLastSync(integration.lastSync) || 'unknown'}
+              Active
             </Button>
             <Button 
               variant="outline" 

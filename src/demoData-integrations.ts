@@ -49,7 +49,6 @@ export const integrations: Integration[] = [
     category: 'crm',
     status: 'active',
     isConnected: true,
-    lastSync: new Date().toISOString(),
     connectionDetails: {
       accountName: 'Acme Corp',
       email: 'admin@acmecorp.com'
@@ -62,38 +61,56 @@ export const integrations: Integration[] = [
     isPopular: true
   },
   {
-    id: 'hubspot',
-    name: 'HubSpot',
-    description: 'Sync your HubSpot contacts and deals with Pearl',
-    icon: '/integration/hubspot.png',
-    category: 'crm',
+    id: 'slack',
+    name: 'Slack',
+    description: 'Connect your Slack workspace for team notifications',
+    icon: '/integration/Slack.png',
+    category: 'communication',
     status: 'active',
     isConnected: true,
-    lastSync: new Date().toISOString(),
     connectionDetails: {
-      accountName: 'Acme Corp HubSpot',
+      accountName: 'Acme Corp',
       email: 'admin@acmecorp.com'
     },
-    capabilities: ['Contact Sync', 'Deal Sync', 'Company Sync', 'Email Tracking'],
-    setupUrl: '/integrations/hubspot/setup',
-    disconnectUrl: '/integrations/hubspot/disconnect',
-    syncUrl: '/integrations/hubspot/sync',
-    color: '#FF7A59',
+    capabilities: ['Team Notifications', 'Channel Integration', 'Message Sync'],
+    setupUrl: '/integrations/slack/setup',
+    disconnectUrl: '/integrations/slack/disconnect',
+    syncUrl: '/integrations/slack/sync',
+    color: '#4A154B',
     isPopular: true
   },
-
-  // Available Integrations
   {
     id: 'google-calendar',
     name: 'Google Calendar',
     description: 'Sync your Google Calendar events and meetings',
     icon: '/integration/googlecalendar.png',
     category: 'calendar',
-    status: 'inactive',
-    isConnected: false,
+    status: 'active',
+    isConnected: true,
+    connectionDetails: {
+      accountName: 'Acme Corp',
+      email: 'admin@acmecorp.com'
+    },
     capabilities: ['Event Sync', 'Meeting Scheduling', 'Availability Sync'],
     setupUrl: '/integrations/google-calendar/setup',
+    disconnectUrl: '/integrations/google-calendar/disconnect',
+    syncUrl: '/integrations/google-calendar/sync',
     color: '#4285F4',
+    isPopular: true
+  },
+
+  // Available Integrations
+  {
+    id: 'hubspot',
+    name: 'HubSpot',
+    description: 'Sync your HubSpot contacts and deals with Pearl',
+    icon: '/integration/hubspot.png',
+    category: 'crm',
+    status: 'inactive',
+    isConnected: false,
+    capabilities: ['Contact Sync', 'Deal Sync', 'Company Sync', 'Email Tracking'],
+    setupUrl: '/integrations/hubspot/setup',
+    color: '#FF7A59',
     isPopular: true
   },
   {
@@ -107,19 +124,6 @@ export const integrations: Integration[] = [
     capabilities: ['Event Sync', 'Meeting Scheduling', 'Availability Sync'],
     setupUrl: '/integrations/outlook-calendar/setup',
     color: '#0078D4'
-  },
-  {
-    id: 'slack',
-    name: 'Slack',
-    description: 'Connect your Slack workspace for team notifications',
-    icon: '/integration/Slack.png',
-    category: 'communication',
-    status: 'inactive',
-    isConnected: false,
-    capabilities: ['Team Notifications', 'Channel Integration', 'Message Sync'],
-    setupUrl: '/integrations/slack/setup',
-    color: '#4A154B',
-    isPopular: true
   },
   {
     id: 'microsoft-teams',
