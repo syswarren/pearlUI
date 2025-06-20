@@ -1,5 +1,5 @@
 import { Feature67 } from "@/components/ui/feature67";
-import { House, Calendar, FileText, Users, Folder, MessageCircle, KeyRound, Globe } from "lucide-react";
+import { House, Calendar, FileText, Users, Folder, MessageCircle, KeyRound, Globe, Palette } from "lucide-react";
 
 const pages = [
   {
@@ -59,13 +59,21 @@ const pages = [
     status: "To do",
   },
   {
-  id: "login",
-  title: "Login Page",
-  description: "Login to Pearl.",
-  icon: KeyRound,
-  url: "/login",
-  status: "Done",
-},
+    id: "login",
+    title: "Login Page",
+    description: "Login to Pearl.",
+    icon: KeyRound,
+    url: "/login",
+    status: "Done",
+  },
+  {
+    id: "button-showcase",
+    title: "Button Showcase",
+    description: "View all button variants in light and dark modes.",
+    icon: Palette,
+    url: "/button-showcase",
+    status: "Done",
+  },
 ];
 
 export default function Home() {
