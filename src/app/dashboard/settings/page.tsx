@@ -1,8 +1,10 @@
+"use client"
+
+import { useState } from "react";
 import PageHeader from "@/components/PageHeader";
 import Form from "@/components/Form";
 import NotificationsForm from "@/components/NotificationsForm";
 import MembersList, { Member } from "@/components/MembersList";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const people: Member[] = [
   { name: 'Sarah Wilson', title: 'CRO', email: 'sarah.wilson@company.com', role: 'Admin' },
@@ -28,7 +30,36 @@ const people: Member[] = [
   { name: 'Ava Richardson', title: 'Customer Success Manager', email: 'ava.richardson@company.com', role: 'Member' },
 ];
 
+const navigationItems = [
+  { id: 'account', label: 'Account' },
+  { id: 'notifications', label: 'Notifications' },
+  { id: 'integrations', label: 'Integrations' },
+  { id: 'team', label: 'Team Management' },
+];
+
 export default function SettingsPage() {
+  const [activeTab, setActiveTab] = useState('account');
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'account':
+        return <Form />;
+      case 'notifications':
+        return <NotificationsForm />;
+      case 'integrations':
+        return (
+          <div className="space-y-4">
+            <h3 className="text-lg font-medium">Integrations</h3>
+            <p className="text-muted-foreground">Connect and manage third-party integrations.</p>
+          </div>
+        );
+      case 'team':
+        return <MembersList people={people} />;
+      default:
+        return <Form />;
+    }
+  };
+
   return (
     <div>
       <div className="px-4 mt-4 sm:px-6 mt-6 lg:px-8 mt-8">
@@ -36,35 +67,35 @@ export default function SettingsPage() {
       </div>
       
       <div className="mt-6">
-        <Tabs defaultValue="account" className="w-full">
-          <TabsList className="flex w-full overflow-x-auto scrollbar-hide sm:px-2 lg:px-2">
-            <TabsTrigger value="account" className="flex-shrink-0">Account</TabsTrigger>
-            <TabsTrigger value="notifications" className="flex-shrink-0">Notifications</TabsTrigger>
-            <TabsTrigger value="integrations" className="flex-shrink-0">Integrations</TabsTrigger>
-            <TabsTrigger value="team" className="flex-shrink-0">Team Management</TabsTrigger>
-          </TabsList>
-          
-          <div className="px-4 mt-6 sm:px-6 lg:px-8">
-            <TabsContent value="account">
-              <Form />
-            </TabsContent>
-            
-            <TabsContent value="notifications">
-              <NotificationsForm />
-            </TabsContent>
-            
-            <TabsContent value="integrations">
-              <div className="space-y-4">
-                <h3 className="text-lg font-medium">Integrations</h3>
-                <p className="text-muted-foreground">Connect and manage third-party integrations.</p>
-              </div>
-            </TabsContent>
-            
-            <TabsContent value="team">
-              <MembersList people={people} />
-            </TabsContent>
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="border-b border-border">
+            <div className="flex w-full overflow-x-auto scrollbar-hide">
+              {navigationItems.map((item, index) => (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveTab(item.id)}
+                  className={`
+                    flex-shrink-0 py-3 text-sm font-medium transition-colors relative
+                    ${index === 0 ? 'ml-0 mr-4' : 'mx-4'}
+                    ${activeTab === item.id 
+                      ? 'text-foreground' 
+                      : 'text-muted-foreground hover:text-foreground'
+                    }
+                  `}
+                >
+                  {item.label}
+                  {activeTab === item.id && (
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"></div>
+                  )}
+                </button>
+              ))}
+            </div>
           </div>
-        </Tabs>
+        </div>
+        
+        <div className="px-4 mt-6 sm:px-6 lg:px-8">
+          {renderContent()}
+        </div>
       </div>
     </div>
   );
