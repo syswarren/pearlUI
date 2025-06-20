@@ -72,7 +72,12 @@ export function IntegrationsList({
     const diffInHours = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60))
     
     if (diffInHours < 1) return 'Just now'
-    if (diffInHours < 24) return `${diffInHours}h ago`
+    if (diffInHours < 24) {
+      // Check if it's the same day
+      const isSameDay = date.toDateString() === now.toDateString()
+      if (isSameDay) return 'Today'
+      return `${diffInHours}h ago`
+    }
     const diffInDays = Math.floor(diffInHours / 24)
     return `${diffInDays}d ago`
   }

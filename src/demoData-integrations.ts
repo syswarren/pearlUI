@@ -49,7 +49,7 @@ export const integrations: Integration[] = [
     category: 'crm',
     status: 'active',
     isConnected: true,
-    lastSync: '2024-01-15T10:30:00Z',
+    lastSync: new Date().toISOString(),
     connectionDetails: {
       accountName: 'Acme Corp',
       email: 'admin@acmecorp.com'
@@ -69,7 +69,7 @@ export const integrations: Integration[] = [
     category: 'crm',
     status: 'active',
     isConnected: true,
-    lastSync: '2024-01-14T15:45:00Z',
+    lastSync: new Date().toISOString(),
     connectionDetails: {
       accountName: 'Acme Corp HubSpot',
       email: 'admin@acmecorp.com'
