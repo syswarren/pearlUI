@@ -20,19 +20,19 @@ export default function NotificationsForm() {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <Checkbox id="new-messages" defaultChecked />
-              <Label htmlFor="new-messages">New messages from Pearl</Label>
+              <Label htmlFor="new-messages" className="font-normal text-muted-foreground">New messages from Pearl</Label>
             </div>
             <div className="flex items-center space-x-2">
               <Checkbox id="mentions" defaultChecked />
-              <Label htmlFor="mentions">New messages from Team</Label>
+              <Label htmlFor="mentions" className="font-normal text-muted-foreground">New messages from Team</Label>
             </div>
             <div className="flex items-center space-x-2">
               <Checkbox id="team-updates" />
-              <Label htmlFor="team-updates">Daily digest</Label>
+              <Label htmlFor="team-updates" className="font-normal text-muted-foreground">Daily digest</Label>
             </div>
             <div className="flex items-center space-x-2">
               <Checkbox id="security" defaultChecked />
-              <Label htmlFor="security">Weekly digest</Label>
+              <Label htmlFor="security" className="font-normal text-muted-foreground">Weekly digest</Label>
             </div>
           </div>
           <Button>Save</Button>
@@ -52,15 +52,15 @@ export default function NotificationsForm() {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <Checkbox id="push-messages" defaultChecked />
-              <Label htmlFor="push-messages">New messages from Pearl</Label>
+              <Label htmlFor="push-messages" className="font-normal text-muted-foreground">New messages from Pearl</Label>
             </div>
             <div className="flex items-center space-x-2">
               <Checkbox id="push-mentions" defaultChecked />
-              <Label htmlFor="push-mentions">New messages from Team</Label>
+              <Label htmlFor="push-mentions" className="font-normal text-muted-foreground">New messages from Team</Label>
             </div>
             <div className="flex items-center space-x-2">
               <Checkbox id="push-reminders" />
-              <Label htmlFor="push-reminders">Daily reminders</Label>
+              <Label htmlFor="push-reminders" className="font-normal text-muted-foreground">Daily reminders</Label>
             </div>
           </div>
           <Button>Save</Button>
@@ -80,15 +80,15 @@ export default function NotificationsForm() {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <Checkbox id="digest-daily" />
-              <Label htmlFor="digest-daily">Notify me immediately</Label>
+              <Label htmlFor="digest-daily" className="font-normal text-muted-foreground">Notify me immediately</Label>
             </div>
             <div className="flex items-center space-x-2">
               <Checkbox id="digest-weekly" defaultChecked />
-              <Label htmlFor="digest-weekly">Batch notifications every 2 hours</Label>
+              <Label htmlFor="digest-weekly" className="font-normal text-muted-foreground">Batch notifications every 2 hours</Label>
             </div>
             <div className="flex items-center space-x-2">
               <Checkbox id="digest-monthly" />
-              <Label htmlFor="digest-monthly">Batch notifications once a day</Label>
+              <Label htmlFor="digest-monthly" className="font-normal text-muted-foreground">Batch notifications once a day</Label>
             </div>
           </div>
           <Button>Save</Button>
