@@ -1,5 +1,5 @@
 import { Feature67 } from "@/components/ui/feature67";
-import { House, Calendar, FileText, Users, Folder, MessageCircle, KeyRound, Globe, Palette } from "lucide-react";
+import { House, Calendar, FileText, Users, Folder, MessageCircle, KeyRound, Globe, Palette, Settings } from "lucide-react";
 
 const pages = [
   {
@@ -16,7 +16,7 @@ const pages = [
     description: "See your schedule and upcoming events.",
     icon: Calendar,
     url: "/dashboard/calendar",
-    status: "Ongoing",
+    status: "To do",
   },
   {
     id: "territory",
@@ -24,7 +24,7 @@ const pages = [
     description: "Manage and view territory information.",
     icon: Globe,
     url: "/dashboard/territory",
-    status: "Ongoing",
+    status: "To do",
   },
   {
     id: "documents",
@@ -32,14 +32,46 @@ const pages = [
     description: "Access and manage documents.",
     icon: FileText,
     url: "/dashboard/documents",
-    status: "Ongoing",
+    status: "To do",
+  },
+  {
+    id: "settings",
+    title: "Settings",
+    description: "Manage integrations, members, and account settings.",
+    icon: Settings,
+    url: "/dashboard/settings",
+    status: "Done",
   },
   {
     id: "members",
-    title: "Members",
+    title: "Settings > Members",
     description: "View and manage team members.",
     icon: Users,
-    url: "/dashboard/members",
+    url: "/dashboard/settings?tab=team",
+    status: "Done",
+  },
+  {
+    id: "integrations",
+    title: "Settings > Integrations",
+    description: "View and manage integrations.",
+    icon: Users,
+    url: "/dashboard/settings?tab=integrations",
+    status: "Done",
+  },
+  {
+    id: "notifications",
+    title: "Settings > Notifications",
+    description: "View and manage notifications.",
+    icon: Users,
+    url: "/dashboard/settings?tab=notifications",
+    status: "Done",
+  },
+  {
+    id: "account",
+    title: "Settings > Account",
+    description: "View and manage account settings.",
+    icon: Users,
+    url: "/dashboard/settings?tab=account",
     status: "Done",
   },
   {

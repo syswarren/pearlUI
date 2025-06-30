@@ -12,7 +12,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { sampleConversations, type ConversationMessage } from "@/demoData"
+import { sampleConversations, type ConversationMessage, type Conversation } from "@/demoData"
 import { useIsMobile } from "@/hooks/use-mobile"
 import { cn } from "@/lib/utils"
 
@@ -31,23 +31,46 @@ export default function StandaloneConversationPage() {
   const [isLoading, setIsLoading] = useState(false)
   const isMobile = useIsMobile()
 
-  // Load sample conversation data if available
+  // Load conversation data from sample data or localStorage
   useEffect(() => {
     const conversationId = params.conversationId as string
+    
+    // First check sample conversations
     const sampleConversation = sampleConversations.find(conv => conv.id === conversationId)
     
     if (sampleConversation) {
       setMessages(sampleConversation.messages)
     } else {
-      // Default welcome message for new conversations
-      setMessages([
-        {
-          id: '1',
-          content: 'Hello! How can I help you today?',
-          from: 'assistant',
-          timestamp: new Date()
+      // Check localStorage for user-created conversations
+      try {
+        const storedConversations = JSON.parse(localStorage.getItem('conversations') || '[]')
+        const storedConversation = storedConversations.find((conv: Conversation) => conv.id === conversationId)
+        
+        if (storedConversation) {
+          setMessages(storedConversation.messages)
+        } else {
+          // Default welcome message for new conversations
+          setMessages([
+            {
+              id: '1',
+              content: 'Hello! How can I help you today?',
+              from: 'assistant',
+              timestamp: new Date()
+            }
+          ])
         }
-      ])
+      } catch (error) {
+        console.error('Error loading conversation from localStorage:', error)
+        // Default welcome message if there's an error
+        setMessages([
+          {
+            id: '1',
+            content: 'Hello! How can I help you today?',
+            from: 'assistant',
+            timestamp: new Date()
+          }
+        ])
+      }
     }
   }, [params.conversationId])
 
@@ -66,6 +89,21 @@ export default function StandaloneConversationPage() {
     setInputValue("")
     setIsLoading(true)
 
+    // Update the conversation in localStorage
+    const conversationId = params.conversationId as string
+    try {
+      const storedConversations = JSON.parse(localStorage.getItem('conversations') || '[]')
+      const conversationIndex = storedConversations.findIndex((conv: Conversation) => conv.id === conversationId)
+      
+      if (conversationIndex !== -1) {
+        storedConversations[conversationIndex].messages.push(userMessage)
+        storedConversations[conversationIndex].updatedAt = new Date()
+        localStorage.setItem('conversations', JSON.stringify(storedConversations))
+      }
+    } catch (error) {
+      console.error('Error updating conversation in localStorage:', error)
+    }
+
     // Simulate AI response with more realistic content
     setTimeout(() => {
       const responses = [
@@ -83,7 +121,23 @@ export default function StandaloneConversationPage() {
         from: 'assistant',
         timestamp: new Date()
       }
+      
       setMessages(prev => [...prev, aiMessage])
+      
+      // Update the conversation in localStorage with AI response
+      try {
+        const storedConversations = JSON.parse(localStorage.getItem('conversations') || '[]')
+        const conversationIndex = storedConversations.findIndex((conv: Conversation) => conv.id === conversationId)
+        
+        if (conversationIndex !== -1) {
+          storedConversations[conversationIndex].messages.push(aiMessage)
+          storedConversations[conversationIndex].updatedAt = new Date()
+          localStorage.setItem('conversations', JSON.stringify(storedConversations))
+        }
+      } catch (error) {
+        console.error('Error updating conversation in localStorage:', error)
+      }
+      
       setIsLoading(false)
     }, 1000 + Math.random() * 2000) // Random delay between 1-3 seconds
   }
