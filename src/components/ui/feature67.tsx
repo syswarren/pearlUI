@@ -108,7 +108,7 @@ const Feature67: React.FC<Feature67Props> = ({ features = defaultFeatures, title
               <Link
                 key={feature.id}
                 href={feature.url}
-                className="relative flex flex-col justify-between rounded-lg border border-border bg-accent p-6 md:p-8 hover:bg-accent/70 transition-colors min-h-40"
+                className="relative flex flex-col justify-between rounded-lg border border-border bg-accent p-6 md:p-8 hover:bg-accent/70 transition-colors min-h-32"
               >
                 {feature.status && (
                   <div className="absolute top-4 right-4 z-10">
@@ -132,7 +132,7 @@ const Feature67: React.FC<Feature67Props> = ({ features = defaultFeatures, title
             ) : (
               <div
                 key={feature.id}
-                className="relative flex flex-col justify-between rounded-lg border border-border bg-accent p-6 md:p-8 min-h-40"
+                className="relative flex flex-col justify-between rounded-lg border border-border bg-accent p-6 md:p-8 min-h-32"
               >
                 {feature.status && (
                   <div className="absolute top-4 right-4 z-10">

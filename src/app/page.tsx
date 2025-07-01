@@ -13,10 +13,10 @@ const pages = [
   {
     id: "calendar",
     title: "Calendar",
-    description: "See your schedule and upcoming events.",
+    description: "⚠️ UI ONLY (Not functional and not optimized) See your schedule and upcoming events.",
     icon: Calendar,
     url: "/dashboard/calendar",
-    status: "To do",
+    status: "Ongoing",
   },
   {
     id: "territory",
@@ -76,7 +76,7 @@ const pages = [
   },
   {
     id: "folders",
-    title: "Folder Page",
+    title: "Folder / Account Page",
     description: "Organize conversations in folders.",
     icon: Folder,
     url: "/dashboard/folder/acme-corp",
@@ -88,7 +88,7 @@ const pages = [
     description: "Collaborate and discuss in conversations.",
     icon: MessageCircle,
     url: "/dashboard/conversation/team-update",
-    status: "To do",
+    status: "Ongoing",
   },
   {
     id: "login",
@@ -98,21 +98,20 @@ const pages = [
     url: "/login",
     status: "Done",
   },
-  {
-    id: "button-showcase",
-    title: "Button Showcase",
-    description: "View all button variants in light and dark modes.",
-    icon: Palette,
-    url: "/button-showcase",
-    status: "Done",
-  },
+
 ];
 
 export default function Home() {
+  // Sort pages by status: Done first, then Ongoing, then To do
+  const sortedPages = [...pages].sort((a, b) => {
+    const statusOrder = { "Done": 0, "Ongoing": 1, "To do": 2 };
+    return statusOrder[a.status as keyof typeof statusOrder] - statusOrder[b.status as keyof typeof statusOrder];
+  });
+
   return (
     <div className="flex flex-col min-h-screen items-center justify-center bg-background text-foreground p-8">
       <Feature67
-        features={pages}
+        features={sortedPages}
         title="Pearl UI"
         description="Quickly access and preview the main sections of your dashboard. Click any block to jump to that page."
       />
