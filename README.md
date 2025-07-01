@@ -24,6 +24,7 @@ Pearl UI is a modern, modular dashboard application built with [Next.js](https:/
 - **Sidebar Navigation**: Modular, collapsible sidebar with support for projects, folders, and user actions.
 - **Theming**: Light/dark mode toggle, with theme persistence.
 - **Demo Pages**: Includes Activity, Documents, Members, Folders, and Conversations.
+- **Calendar Component**: UI-only calendar with day, week, and month views (demo purposes only - not functional or optimized for production).
 - **Component Library**: Built with reusable UI components (buttons, inputs, dropdowns, cards, etc.).
 - **Responsive Design**: Fully responsive layout for desktop and mobile.
 - **TypeScript**: Type-safe codebase for reliability and maintainability.
