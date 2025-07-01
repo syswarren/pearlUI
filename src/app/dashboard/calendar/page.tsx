@@ -65,7 +65,7 @@ function classNames(...classes: (string | boolean | undefined)[]) {
 }
 
 export default function CalendarPage() {
-  const [view, setView] = useState<'day' | 'week' | 'month' | 'year'>('day')
+  const [view, setView] = useState<'day' | 'week' | 'month'>('day')
   const container = useRef<HTMLDivElement>(null)
   const containerNav = useRef<HTMLDivElement>(null)
   const containerOffset = useRef<HTMLDivElement>(null)
@@ -128,7 +128,6 @@ export default function CalendarPage() {
                   {view === 'day' && 'Day view'}
                   {view === 'week' && 'Week view'}
                   {view === 'month' && 'Month view'}
-                  {view === 'year' && 'Year view'}
                   <ChevronDown className="-mr-1 size-5 text-muted-foreground" aria-hidden="true" />
                 </Button>
               </DropdownMenuTrigger>
@@ -136,7 +135,6 @@ export default function CalendarPage() {
                 <DropdownMenuItem onClick={() => setView('day')}>Day view</DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setView('week')}>Week view</DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setView('month')}>Month view</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setView('year')}>Year view</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
@@ -154,7 +152,6 @@ export default function CalendarPage() {
               <DropdownMenuItem onClick={() => setView('day')}>Day view</DropdownMenuItem>
               <DropdownMenuItem onClick={() => setView('week')}>Week view</DropdownMenuItem>
               <DropdownMenuItem onClick={() => setView('month')}>Month view</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setView('year')}>Year view</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -219,7 +216,7 @@ export default function CalendarPage() {
               {/* Horizontal lines */}
               <div
                 className="col-start-1 col-end-2 row-start-1 grid divide-y divide-border"
-                style={{ gridTemplateRows: 'repeat(48, minmax(3.5rem, 1fr))' }}
+                style={{ gridTemplateRows: 'repeat(48, minmax(2rem, 1fr))' }}
               >
                 <div ref={containerOffset} className="row-end-1 h-7"></div>
                 <div>
@@ -338,9 +335,9 @@ export default function CalendarPage() {
                       <li key={event.id} className="relative mt-px flex" style={{ gridRow: `${startRow} / span ${duration}` }}>
                         <a
                           href={event.href}
-                          className="group absolute inset-1 flex flex-col overflow-y-auto rounded-lg bg-blue-50 dark:bg-blue-950/50 p-2 text-xs/5 hover:bg-blue-100 dark:hover:bg-blue-950/70"
+                          className="group absolute inset-1 flex flex-col overflow-y-auto rounded-lg bg-blue-50 dark:bg-blue-950/50 p-1 text-xs/4 hover:bg-blue-100 dark:hover:bg-blue-950/70"
                         >
-                          <p className="font-semibold text-blue-700 dark:text-blue-300">{event.name}</p>
+                          <p className="font-semibold text-blue-700 dark:text-blue-300 text-xs">{event.name}</p>
                         </a>
                       </li>
                     )
