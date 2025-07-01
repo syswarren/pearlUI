@@ -107,8 +107,8 @@ export default function HomePage() {
           </div>
         </AIInput>
         {/* Cards section moved here */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-          <Card className="w-[210px] h-[120px] rounded-[12px] overflow-hidden group">
+        <div className="flex flex-col items-center sm:flex-row gap-4 justify-center mt-8">
+          <Card className="w-[90%] h-[150px] sm:w-[210px] sm:h-[120px] rounded-[12px] overflow-hidden group">
             <CardContent className="flex flex-col h-full">
               <div className="flex flex-col">
                 <div className="font-semibold text-[14px]">Prep my next meeting</div>
@@ -117,7 +117,7 @@ export default function HomePage() {
               <img src="/PrepMeetingIllu.svg" alt="Prep meeting" className="h-16 self-end opacity-80 mt-auto mr-[-24px] filter invert dark:filter-none transition-transform duration-200 group-hover:-translate-x-1 group-hover:-translate-y-1" style={{ transform: 'rotate(-15deg)' }} />
             </CardContent>
           </Card>
-          <Card className="w-[210px] h-[120px] rounded-[12px] overflow-hidden group">
+          <Card className="w-[90%] h-[150px] sm:w-[210px] sm:h-[120px] rounded-[12px] overflow-hidden group">
             <CardContent className="flex flex-col h-full">
               <div className="flex flex-col">
                 <div className="font-semibold text-[14px]">Draft a follow-up email</div>
@@ -126,7 +126,7 @@ export default function HomePage() {
               <img src="/draftIllu.svg" alt="Draft email" className="h-24 self-end opacity-90 mt-[-10px] mr-[-20px] filter invert dark:filter-none transition-transform duration-200 group-hover:-translate-x-1 group-hover:-translate-y-1" style={{ transform: 'rotate(15deg)' }} />
             </CardContent>
           </Card>
-          <Card className="w-[210px] h-[120px] rounded-[12px] overflow-hidden group">
+          <Card className="w-[90%] h-[150px] sm:w-[210px] sm:h-[120px] rounded-[12px] overflow-hidden group">
             <CardContent className="flex flex-col h-full">
               <div className="flex flex-col">
                 <div className="font-semibold text-[14px]">Update Salesforce</div>
