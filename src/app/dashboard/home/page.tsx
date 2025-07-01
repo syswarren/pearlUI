@@ -61,10 +61,7 @@ export default function HomePage() {
       {/* Centered chat input */}
       <div className="w-full max-w-2xl">
         <div className="text-center mb-8">
-          <h2 className="text-2xl font-semibold mb-2">Welcome to Pearl</h2>
-          <p className="text-muted-foreground">
-            Start a new conversation by typing your message below
-          </p>
+          <h2 className="text-2xl font-semibold mb-2">Good morning, Julie</h2>
         </div>
         
         <AIInput onSubmit={handleSubmit}>
@@ -109,6 +106,36 @@ export default function HomePage() {
             </AIInputTools>
           </div>
         </AIInput>
+        {/* Cards section moved here */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+          <Card className="w-[210px] h-[120px] rounded-[12px] overflow-hidden group">
+            <CardContent className="flex flex-col h-full">
+              <div className="flex flex-col">
+                <div className="font-semibold text-[14px]">Prep my next meeting</div>
+                <div className="text-muted-foreground text-[14px]">with Acme Corp</div>
+              </div>
+              <img src="/PrepMeetingIllu.svg" alt="Prep meeting" className="h-16 self-end opacity-80 mt-auto mr-[-24px] filter invert dark:filter-none transition-transform duration-200 group-hover:-translate-x-1 group-hover:-translate-y-1" style={{ transform: 'rotate(-15deg)' }} />
+            </CardContent>
+          </Card>
+          <Card className="w-[210px] h-[120px] rounded-[12px] overflow-hidden group">
+            <CardContent className="flex flex-col h-full">
+              <div className="flex flex-col">
+                <div className="font-semibold text-[14px]">Draft a follow-up email</div>
+                <div className="text-muted-foreground text-[14px]">to John Doe from Acme Corp</div>
+              </div>
+              <img src="/draftIllu.svg" alt="Draft email" className="h-24 self-end opacity-90 mt-[-10px] mr-[-20px] filter invert dark:filter-none transition-transform duration-200 group-hover:-translate-x-1 group-hover:-translate-y-1" style={{ transform: 'rotate(15deg)' }} />
+            </CardContent>
+          </Card>
+          <Card className="w-[210px] h-[120px] rounded-[12px] overflow-hidden group">
+            <CardContent className="flex flex-col h-full">
+              <div className="flex flex-col">
+                <div className="font-semibold text-[14px]">Update Salesforce</div>
+                <div className="text-muted-foreground text-[14px]">with collected information</div>
+              </div>
+              <img src="/crm_illu.svg" alt="Update Salesforce" className="h-20 self-end opacity-80 mt-[6px] mr-[-36px] filter invert dark:filter-none transition-transform duration-200 group-hover:-translate-x-1 group-hover:-translate-y-1" style={{ transform: 'rotate(-15deg)' }} />
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   )
