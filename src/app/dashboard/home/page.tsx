@@ -61,7 +61,7 @@ export default function HomePage() {
       {/* Centered chat input */}
       <div className="w-full max-w-2xl">
         <div className="flex flex-col px-4 gap-4 mb-10 w-full max-w-2xl">
-          <div className="flex items-center">
+          <div className="flex items-center justify-center sm:justify-start">
             <h2 className="text-2xl font-semibold leading-8 text-foreground">
               Good morning, Julie
             </h2>
