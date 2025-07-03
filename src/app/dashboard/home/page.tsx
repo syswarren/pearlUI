@@ -7,9 +7,11 @@ import { Paperclip, AudioLines, Send, Calendar, Mail, Database } from "lucide-re
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 export default function HomePage() {
   const router = useRouter()
+  const isMobile = useIsMobile()
   const [inputValue, setInputValue] = useState("")
   const [isLoading, setIsLoading] = useState(false)
 
@@ -50,7 +52,10 @@ export default function HomePage() {
   }
 
   return (
-    <div className="flex items-center justify-center h-[calc(100vh-120px)] px-4 sm:px-6 lg:px-8">
+    <div className={cn(
+      "flex items-center justify-center px-4 sm:px-6 lg:px-8",
+      isMobile ? "h-[calc(100vh-120px-80px)] pb-20" : "h-[calc(100vh-120px)]"
+    )}>
       {/* Centered chat input */}
       <div className="w-full max-w-2xl">
         <div className="flex flex-col px-4 gap-4 mb-10 w-full max-w-2xl">
@@ -110,34 +115,36 @@ export default function HomePage() {
           </div>
         </AIInput>
         {/* Cards section moved here */}
-        <div className="flex flex-col items-center sm:flex-row gap-4 justify-center mt-8">
-          <Card className="w-[90%] h-[150px] sm:w-[210px] sm:h-[120px] rounded-[12px] overflow-hidden group">
-            <CardContent className="flex flex-col h-full">
-              <div className="flex flex-col">
-                <div className="font-semibold text-[14px]">Prep my next meeting</div>
-                <div className="text-muted-foreground text-[14px]">with Acme Corp</div>
-              </div>
-              <img src="/PrepMeetingIllu.svg" alt="Prep meeting" className="h-16 self-end opacity-80 mt-auto mr-[-24px] filter invert dark:filter-none transition-transform duration-200 group-hover:-translate-x-1 group-hover:-translate-y-1" style={{ transform: 'rotate(-15deg)' }} />
-            </CardContent>
-          </Card>
-          <Card className="w-[90%] h-[150px] sm:w-[210px] sm:h-[120px] rounded-[12px] overflow-hidden group">
-            <CardContent className="flex flex-col h-full">
-              <div className="flex flex-col">
-                <div className="font-semibold text-[14px]">Draft a follow-up email</div>
-                <div className="text-muted-foreground text-[14px]">to John Doe from Acme Corp</div>
-              </div>
-              <img src="/draftIllu.svg" alt="Draft email" className="h-24 self-end opacity-90 mt-[-10px] mr-[-20px] filter invert dark:filter-none transition-transform duration-200 group-hover:-translate-x-1 group-hover:-translate-y-1" style={{ transform: 'rotate(15deg)' }} />
-            </CardContent>
-          </Card>
-          <Card className="w-[90%] h-[150px] sm:w-[210px] sm:h-[120px] rounded-[12px] overflow-hidden group">
-            <CardContent className="flex flex-col h-full">
-              <div className="flex flex-col">
-                <div className="font-semibold text-[14px]">Update Salesforce</div>
-                <div className="text-muted-foreground text-[14px]">with collected information</div>
-              </div>
-              <img src="/crm_illu.svg" alt="Update Salesforce" className="h-20 self-end opacity-70 mt-[6px] mr-[-36px] filter invert dark:filter-none transition-transform duration-200 group-hover:-translate-x-1 group-hover:-translate-y-1" style={{ transform: 'rotate(-15deg)' }} />
-            </CardContent>
-          </Card>
+        <div className="mt-8">
+          <div className="flex gap-4 overflow-x-auto pb-4 px-4 sm:px-0 sm:justify-center sm:overflow-x-visible">
+            <Card className="flex-shrink-0 w-[280px] h-[120px] sm:w-[210px] sm:h-[120px] rounded-[12px] overflow-hidden group">
+              <CardContent className="flex flex-col h-full">
+                <div className="flex flex-col">
+                  <div className="font-semibold text-[14px]">Prep my next meeting</div>
+                  <div className="text-muted-foreground text-[14px]">with Acme Corp</div>
+                </div>
+                <img src="/PrepMeetingIllu.svg" alt="Prep meeting" className="h-12 self-end opacity-80 mt-auto mr-[-24px] filter invert dark:filter-none transition-transform duration-200 group-hover:-translate-x-1 group-hover:-translate-y-1" style={{ transform: 'rotate(-15deg)' }} />
+              </CardContent>
+            </Card>
+            <Card className="flex-shrink-0 w-[280px] h-[120px] sm:w-[210px] sm:h-[120px] rounded-[12px] overflow-hidden group">
+              <CardContent className="flex flex-col h-full">
+                <div className="flex flex-col">
+                  <div className="font-semibold text-[14px]">Draft a follow-up email</div>
+                  <div className="text-muted-foreground text-[14px]">to John Doe from Acme Corp</div>
+                </div>
+                <img src="/draftIllu.svg" alt="Draft email" className="h-20 self-end opacity-90 mt-[-10px] mr-[-20px] filter invert dark:filter-none transition-transform duration-200 group-hover:-translate-x-1 group-hover:-translate-y-1" style={{ transform: 'rotate(15deg)' }} />
+              </CardContent>
+            </Card>
+            <Card className="flex-shrink-0 w-[280px] h-[120px] sm:w-[210px] sm:h-[120px] rounded-[12px] overflow-hidden group">
+              <CardContent className="flex flex-col h-full">
+                <div className="flex flex-col">
+                  <div className="font-semibold text-[14px]">Update Salesforce</div>
+                  <div className="text-muted-foreground text-[14px]">with collected information</div>
+                </div>
+                <img src="/crm_illu.svg" alt="Update Salesforce" className="h-16 self-end opacity-70 mt-[6px] mr-[-36px] filter invert dark:filter-none transition-transform duration-200 group-hover:-translate-x-1 group-hover:-translate-y-1" style={{ transform: 'rotate(-15deg)' }} />
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </div>
