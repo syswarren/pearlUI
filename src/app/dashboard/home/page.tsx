@@ -66,7 +66,7 @@ export default function HomePage() {
               Good morning, Julie
             </h2>
           </div>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 w-full px-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 w-full px-4 sm:px-0">
             <div className="flex flex-col border-b sm:border-b-0 sm:border-r border-gray-300 dark:border-gray-700 pb-4 sm:pb-0 sm:pr-8 w-full sm:w-auto">
               <span className="text-sm text-muted-foreground">Quota Progress</span>
               <div className="flex items-center mt-2 gap-2">
