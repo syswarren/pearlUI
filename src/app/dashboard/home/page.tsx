@@ -60,8 +60,41 @@ export default function HomePage() {
     <div className="flex items-center justify-center h-[calc(100vh-120px)] px-4 sm:px-6 lg:px-8">
       {/* Centered chat input */}
       <div className="w-full max-w-2xl">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl font-semibold mb-2">Good morning, Julie</h2>
+        <div className="flex flex-col px-4 gap-4 mb-10 w-full max-w-2xl">
+          <div className="flex items-center">
+            <h2 className="text-2xl font-semibold leading-8 text-foreground">
+              Good morning, Julie
+            </h2>
+          </div>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 w-full px-4">
+            <div className="flex flex-col border-b sm:border-b-0 sm:border-r border-gray-300 dark:border-gray-700 pb-4 sm:pb-0 sm:pr-8 w-full sm:w-auto">
+              <span className="text-sm text-muted-foreground">Quota Progress</span>
+              <div className="flex items-center mt-2 gap-2">
+                <span className="text-sm font-semibold text-foreground">
+                  €500,000 / €1.5M
+                </span>
+                <span className="text-sm text-foreground opacity-60">33%</span>
+              </div>
+            </div>
+            <div className="flex flex-col border-b sm:border-b-0 sm:border-r border-gray-300 dark:border-gray-700 pb-4 sm:pb-0 sm:pr-8 w-full sm:w-auto">
+              <span className="text-sm text-muted-foreground">Pipeline progress</span>
+              <div className="flex items-center mt-2 gap-2">
+                <span className="text-sm font-semibold text-foreground">
+                  €100,000 / €3M
+                </span>
+                <span className="text-sm text-foreground opacity-60">3.3%</span>
+              </div>
+            </div>
+            <div className="flex flex-col w-full sm:w-auto">
+              <span className="text-sm text-muted-foreground">Quarter Progress</span>
+              <div className="flex items-center mt-2 gap-2">
+                <span className="text-sm font-semibold text-foreground">
+                  €250,000 / €325,000
+                </span>
+                <span className="text-sm text-foreground opacity-60">77%</span>
+              </div>
+            </div>
+          </div>
         </div>
         
         <AIInput onSubmit={handleSubmit}>
@@ -132,7 +165,7 @@ export default function HomePage() {
                 <div className="font-semibold text-[14px]">Update Salesforce</div>
                 <div className="text-muted-foreground text-[14px]">with collected information</div>
               </div>
-              <img src="/crm_illu.svg" alt="Update Salesforce" className="h-20 self-end opacity-80 mt-[6px] mr-[-36px] filter invert dark:filter-none transition-transform duration-200 group-hover:-translate-x-1 group-hover:-translate-y-1" style={{ transform: 'rotate(-15deg)' }} />
+              <img src="/crm_illu.svg" alt="Update Salesforce" className="h-20 self-end opacity-70 mt-[6px] mr-[-36px] filter invert dark:filter-none transition-transform duration-200 group-hover:-translate-x-1 group-hover:-translate-y-1" style={{ transform: 'rotate(-15deg)' }} />
             </CardContent>
           </Card>
         </div>
