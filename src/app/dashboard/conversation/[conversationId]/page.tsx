@@ -5,13 +5,7 @@ import { AIResponse } from "@/components/ui/kibo-ui/ai/response"
 import { AIMessage, AIMessageContent, AIMessageAvatar } from "@/components/ui/kibo-ui/ai/message"
 import { AIConversation, AIConversationContent, AIConversationScrollButton } from "@/components/ui/kibo-ui/ai/conversation"
 import { useState, useEffect } from "react"
-import { Paperclip, AudioLines, ChevronDown, Send } from "lucide-react"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import { Paperclip, AudioLines, Send } from "lucide-react"
 import { sampleConversations, type ConversationMessage, type Conversation } from "@/demoData"
 import { useIsMobile } from "@/hooks/use-mobile"
 import { cn } from "@/lib/utils"
@@ -24,22 +18,29 @@ interface Message {
 }
 
 export default function StandaloneConversationPage() {
-  const params = useParams<{ conversationId: string }>()
+  const params = useParams()
+  const conversationId = params.conversationId as string
+  const isMobile = useIsMobile()
+  
   const [messages, setMessages] = useState<Message[]>([])
   const [inputValue, setInputValue] = useState("")
-  const [selectedModel, setSelectedModel] = useState("GPT-4")
   const [isLoading, setIsLoading] = useState(false)
-  const isMobile = useIsMobile()
 
   // Load conversation data from sample data or localStorage
   useEffect(() => {
-    const conversationId = params.conversationId as string
-    
     // First check sample conversations
     const sampleConversation = sampleConversations.find(conv => conv.id === conversationId)
     
     if (sampleConversation) {
-      setMessages(sampleConversation.messages)
+      // Default welcome message for new conversations
+      setMessages([
+        {
+          id: '1',
+          content: 'Hello! How can I help you today?',
+          from: 'assistant',
+          timestamp: new Date()
+        }
+      ])
     } else {
       // Check localStorage for user-created conversations
       try {
@@ -72,7 +73,7 @@ export default function StandaloneConversationPage() {
         ])
       }
     }
-  }, [params.conversationId])
+  }, [conversationId])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -90,7 +91,6 @@ export default function StandaloneConversationPage() {
     setIsLoading(true)
 
     // Update the conversation in localStorage
-    const conversationId = params.conversationId as string
     try {
       const storedConversations = JSON.parse(localStorage.getItem('conversations') || '[]')
       const conversationIndex = storedConversations.findIndex((conv: Conversation) => conv.id === conversationId)
@@ -204,30 +204,7 @@ export default function StandaloneConversationPage() {
               placeholder="Type your message..."
               disabled={isLoading}
             />
-            <div className="flex items-center justify-between w-full mt-2">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button
-                    type="button"
-                    className="flex items-center gap-2 px-3 py-2 text-sm border rounded-md hover:bg-accent transition-colors focus:outline-none focus:ring-0"
-                    disabled={isLoading}
-                  >
-                    {selectedModel}
-                    <ChevronDown className="h-4 w-4" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuItem onClick={() => setSelectedModel("GPT-4")}>
-                    GPT-4
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setSelectedModel("GPT-3.5")}>
-                    GPT-3.5
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setSelectedModel("Claude")}>
-                    Claude
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+            <div className="flex items-center justify-end w-full mt-2">
               <AIInputTools>
                 <AIInputButton variant="default" disabled={isLoading}>
                   <Paperclip className="h-4 w-4" />

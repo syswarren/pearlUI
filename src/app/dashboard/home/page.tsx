@@ -3,13 +3,7 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { AIInput, AIInputTextarea, AIInputToolbar, AIInputTools, AIInputButton, AIInputSubmit } from "@/components/ui/kibo-ui/ai/input"
-import { Paperclip, AudioLines, ChevronDown, Send, Calendar, Mail, Database } from "lucide-react"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import { Paperclip, AudioLines, Send, Calendar, Mail, Database } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -17,7 +11,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 export default function HomePage() {
   const router = useRouter()
   const [inputValue, setInputValue] = useState("")
-  const [selectedModel, setSelectedModel] = useState("GPT-4")
   const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -68,7 +61,7 @@ export default function HomePage() {
           </div>
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 w-full px-4 sm:px-0">
             <div className="flex flex-col border-b sm:border-b-0 sm:border-r border-gray-300 dark:border-gray-700 pb-4 sm:pb-0 sm:pr-8 w-full sm:w-auto">
-              <span className="text-sm text-muted-foreground">Quota Progress</span>
+              <span className="text-sm text-muted-foreground">Quota progress</span>
               <div className="flex items-center mt-2 gap-2">
                 <span className="text-sm font-semibold text-foreground">
                   €500,000 / €1.5M
@@ -86,7 +79,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="flex flex-col w-full sm:w-auto">
-              <span className="text-sm text-muted-foreground">Quarter Progress</span>
+              <span className="text-sm text-muted-foreground">Quarter progress</span>
               <div className="flex items-center mt-2 gap-2">
                 <span className="text-sm font-semibold text-foreground">
                   €250,000 / €325,000
@@ -105,30 +98,7 @@ export default function HomePage() {
             disabled={isLoading}
             className="min-h-[80px] max-h-[200px] resize-none"
           />
-          <div className="flex items-center justify-between w-full mt-2">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button
-                  type="button"
-                  className="flex items-center gap-2 px-3 py-2 text-sm border rounded-md hover:bg-accent transition-colors focus:outline-none focus:ring-0"
-                  disabled={isLoading}
-                >
-                  {selectedModel}
-                  <ChevronDown className="h-4 w-4" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem onClick={() => setSelectedModel("GPT-4")}>
-                  GPT-4
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setSelectedModel("GPT-3.5")}>
-                  GPT-3.5
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setSelectedModel("Claude")}>
-                  Claude
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+          <div className="flex items-center justify-end w-full mt-2">
             <AIInputTools>
               <AIInputButton variant="default" disabled={isLoading}>
                 <Paperclip className="h-4 w-4" />

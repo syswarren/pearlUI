@@ -6,13 +6,7 @@ import { AIResponse } from "@/components/ui/kibo-ui/ai/response"
 import { AIMessage, AIMessageContent, AIMessageAvatar } from "@/components/ui/kibo-ui/ai/message"
 import { AIConversation, AIConversationContent, AIConversationScrollButton } from "@/components/ui/kibo-ui/ai/conversation"
 import { useState, useEffect } from "react"
-import { Paperclip, AudioLines, ChevronDown, Send } from "lucide-react"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import { Paperclip, AudioLines, Send } from "lucide-react"
 import { sampleConversations, type ConversationMessage } from "@/demoData"
 import { useIsMobile } from "@/hooks/use-mobile"
 import { cn } from "@/lib/utils"
@@ -25,16 +19,16 @@ interface Message {
 }
 
 export default function FolderConversationPage() {
-  const params = useParams<{ folderId: string; conversationId: string }>()
+  const params = useParams()
+  const conversationId = params.conversationId as string
+  const isMobile = useIsMobile()
+  
   const [messages, setMessages] = useState<Message[]>([])
   const [inputValue, setInputValue] = useState("")
-  const [selectedModel, setSelectedModel] = useState("GPT-4")
   const [isLoading, setIsLoading] = useState(false)
-  const isMobile = useIsMobile()
 
   // Load sample conversation data if available
   useEffect(() => {
-    const conversationId = params.conversationId as string
     const sampleConversation = sampleConversations.find(conv => conv.id === conversationId)
     
     if (sampleConversation) {
@@ -151,30 +145,7 @@ export default function FolderConversationPage() {
               placeholder="Type your message..."
               disabled={isLoading}
             />
-            <div className="flex items-center justify-between w-full mt-2">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button
-                    type="button"
-                    className="flex items-center gap-2 px-3 py-2 text-sm border rounded-md hover:bg-accent transition-colors focus:outline-none focus:ring-0"
-                    disabled={isLoading}
-                  >
-                    {selectedModel}
-                    <ChevronDown className="h-4 w-4" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuItem onClick={() => setSelectedModel("GPT-4")}>
-                    GPT-4
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setSelectedModel("GPT-3.5")}>
-                    GPT-3.5
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setSelectedModel("Claude")}>
-                    Claude
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+            <div className="flex items-center justify-end w-full mt-2">
               <AIInputTools>
                 <AIInputButton variant="default" disabled={isLoading}>
                   <Paperclip className="h-4 w-4" />
