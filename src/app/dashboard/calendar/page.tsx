@@ -95,7 +95,7 @@ export default function CalendarPage() {
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">Monday</p>
         </div>
-                  <div className="flex items-center">
+        <div className="flex items-center">
             <div className="relative flex items-center rounded-md bg-background shadow-sm md:items-stretch">
               <Button
                 variant="outline"
@@ -324,6 +324,7 @@ export default function CalendarPage() {
               >
                 {(() => {
                   const dayEvents = getEventsForDate('2025-07-07')
+                  console.log('Events for 2025-07-07:', dayEvents)
                   return dayEvents.map((event) => {
                     if (event.time === 'All day') return null
                     
@@ -335,9 +336,9 @@ export default function CalendarPage() {
                       <li key={event.id} className="relative mt-px flex" style={{ gridRow: `${startRow} / span ${duration}` }}>
                         <a
                           href={event.href}
-                          className="group absolute inset-1 flex flex-col overflow-y-auto rounded-lg bg-blue-50 dark:bg-blue-950/50 p-1 text-xs/4 hover:bg-blue-100 dark:hover:bg-blue-950/70"
+                          className={`group absolute inset-1 flex flex-col overflow-y-auto rounded-lg p-1 text-xs/4 border ${event.color || 'bg-gray-50 text-gray-900 border-gray-200'}`}
                         >
-                          <p className="font-semibold text-blue-700 dark:text-blue-300 text-xs">{event.name}</p>
+                          <p className="font-semibold text-xs">{event.name}</p>
                         </a>
                       </li>
                     )

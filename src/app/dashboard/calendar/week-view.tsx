@@ -277,20 +277,29 @@ export default function WeekView() {
                 className="col-start-1 col-end-2 row-start-1 grid grid-cols-1 sm:grid-cols-7 sm:pr-8"
                 style={{ gridTemplateRows: '1.75rem repeat(288, minmax(0, 1fr)) auto' }}
               >
-                {weekEvents.map((event) => (
-                  <li 
-                    key={event.id} 
-                    className={`relative mt-px flex sm:col-start-${event.day}`} 
-                    style={{ gridRow: `${event.startRow} / span ${event.duration}` }}
-                  >
-                    <a
-                      href={event.href}
-                      className="group absolute inset-1 flex flex-col overflow-y-auto rounded-lg bg-blue-50 dark:bg-blue-950/50 p-1 text-xs/4 hover:bg-blue-100 dark:hover:bg-blue-950/70"
-                    >
-                      <p className="font-semibold text-blue-700 dark:text-blue-300 text-xs">{event.name}</p>
-                    </a>
-                  </li>
-                ))}
+                {(() => {
+                  console.log('Week events with day numbers:', weekEvents.map(e => ({ name: e.name, day: e.day, datetime: e.datetime })))
+                  return weekEvents.map((event) => {
+                    console.log(`Rendering ${event.name} at day ${event.day}, row ${event.startRow}, duration ${event.duration}`)
+                    return (
+                      <li 
+                        key={event.id} 
+                        className="relative mt-px flex" 
+                        style={{ 
+                          gridRow: `${event.startRow} / span ${event.duration}`,
+                          gridColumn: `${event.day} / ${event.day + 1}`
+                        }}
+                      >
+                        <a
+                          href={event.href}
+                          className={`group absolute inset-1 flex flex-col overflow-y-auto rounded-lg p-1 text-xs/4 border ${event.color || 'bg-gray-50 text-gray-900 border-gray-200'}`}
+                        >
+                          <p className="font-semibold text-xs">{event.name}</p>
+                        </a>
+                      </li>
+                    )
+                  })
+                })()}
               </ol>
             </div>
           </div>
