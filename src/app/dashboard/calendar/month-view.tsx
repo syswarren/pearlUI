@@ -1,6 +1,7 @@
 import { Clock } from 'lucide-react'
-import { useMemo } from 'react'
-import { days } from './calendar-data'
+import { useMemo, useState } from 'react'
+import { days, CalendarEvent } from './calendar-data'
+import EventModal from '@/components/EventModal'
 
 function classNames(...classes: (string | boolean | undefined)[]) {
   return classes.filter(Boolean).join(' ')
@@ -8,6 +9,20 @@ function classNames(...classes: (string | boolean | undefined)[]) {
 
 export default function MonthView() {
   const selectedDay = useMemo(() => days.find((day) => day.isSelected), [])
+  const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const handleEventClick = (event: CalendarEvent, e: React.MouseEvent) => {
+    e.preventDefault()
+    setSelectedEvent(event)
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setSelectedEvent(null)
+  }
+
   return (
     <div className="h-[calc(100vh-3rem)] flex flex-col overflow-hidden">
       <div className="flex-1 overflow-auto">
@@ -47,7 +62,10 @@ export default function MonthView() {
                 <ol className="mt-1 space-y-0.5">
                   {day.events.slice(0, 2).map((event) => (
                     <li key={event.id}>
-                      <a href={event.href} className="group flex items-center">
+                      <button 
+                        onClick={(e) => handleEventClick(event, e)}
+                        className="group flex items-center w-full text-left hover:bg-accent rounded px-1 py-0.5 transition-colors"
+                      >
                         <span className="truncate text-xs text-muted-foreground group-hover:text-foreground transition-colors">
                           {event.name}
                         </span>
@@ -57,7 +75,7 @@ export default function MonthView() {
                         >
                           {event.time}
                         </time>
-                      </a>
+                      </button>
                     </li>
                   ))}
                   {day.events.length > 2 && <li className="text-xs text-muted-foreground">+ {day.events.length - 2} more</li>}
@@ -121,17 +139,23 @@ export default function MonthView() {
                     {event.time}
                   </time>
                 </div>
-                <a
-                  href={event.href}
-                  className="ml-6 flex-none self-center rounded-md bg-background px-3 py-2 font-normal text-foreground opacity-0 shadow-xs ring-1 ring-border group-hover:opacity-100 focus:opacity-100 text-xs"
+                <button
+                  onClick={(e) => handleEventClick(event, e)}
+                  className="ml-6 flex-none self-center rounded-md bg-background px-3 py-2 font-normal text-foreground opacity-0 shadow-xs ring-1 ring-border group-hover:opacity-100 focus:opacity-100 text-xs hover:bg-accent transition-colors"
                 >
-                  Edit<span className="sr-only">, {event.name}</span>
-                </a>
+                  View<span className="sr-only">, {event.name}</span>
+                </button>
               </li>
             ))}
           </ol>
         </div>
       )}
+      
+      <EventModal 
+        event={selectedEvent}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </div>
   )
 } 

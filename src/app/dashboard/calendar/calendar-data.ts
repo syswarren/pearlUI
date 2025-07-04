@@ -5,6 +5,11 @@ export interface CalendarEvent {
   datetime: string
   href: string
   color?: string
+  guest?: string
+  description?: string
+  linkedAccount?: string
+  meetingType?: 'meeting' | 'focus' | 'task'
+  location?: string
 }
 
 export interface CalendarDay {
@@ -90,42 +95,42 @@ function getDayNumber(dateString: string): number {
 // All events in a single unified structure
 const allEvents: CalendarEvent[] = [
   // July 3, 2025
-  { id: 1, name: 'Discovery call – Acme Corp', time: '9AM', datetime: '2025-07-03T09:00', href: '#' },
-  { id: 2, name: 'Focus time – Proposal prep', time: '10AM', datetime: '2025-07-03T10:00', href: '#' },
-  { id: 3, name: 'Follow-up strategy – Ardent Media', time: '11AM', datetime: '2025-07-03T11:00', href: '#' },
-  { id: 4, name: 'Lunch with prospect – TechStart Inc', time: '12PM', datetime: '2025-07-03T12:00', href: '#' },
-  { id: 5, name: 'Focus time – Research competitors', time: '1PM', datetime: '2025-07-03T13:00', href: '#' },
-  { id: 6, name: 'Demo prep – Velar Technologies', time: '2PM', datetime: '2025-07-03T14:00', href: '#' },
-  { id: 7, name: 'Pipeline review – Velar Technologies', time: '4PM', datetime: '2025-07-03T16:00', href: '#' },
+  { id: 1, name: 'Discovery call – Acme Corp', time: '9AM', datetime: '2025-07-03T09:00', href: '#', guest: 'Sarah Johnson, Mike Chen, Lisa Wang', description: 'Initial discovery call to understand Acme Corp\'s needs and requirements', linkedAccount: 'Acme Corp', meetingType: 'meeting', location: 'Google Meet' },
+  { id: 2, name: 'Focus time – Proposal prep', time: '10AM', datetime: '2025-07-03T10:00', href: '#', description: 'Prepare proposal for Acme Corp based on discovery call', linkedAccount: 'Acme Corp', meetingType: 'focus' },
+  { id: 3, name: 'Follow-up strategy – Ardent Media', time: '11AM', datetime: '2025-07-03T11:00', href: '#', description: 'Develop follow-up strategy for Ardent Media deal', linkedAccount: 'Ardent Media', meetingType: 'focus' },
+  { id: 4, name: 'Lunch with prospect – TechStart Inc', time: '12PM', datetime: '2025-07-03T12:00', href: '#', guest: 'Mike Chen', description: 'Lunch meeting to discuss partnership opportunities', linkedAccount: 'TechStart Inc', meetingType: 'meeting', location: 'The Grand Restaurant, 123 Main St' },
+  { id: 5, name: 'Focus time – Research competitors', time: '1PM', datetime: '2025-07-03T13:00', href: '#', description: 'Research competitive landscape for upcoming proposals', meetingType: 'focus' },
+  { id: 6, name: 'Demo prep – Velar Technologies', time: '2PM', datetime: '2025-07-03T14:00', href: '#', description: 'Prepare demo materials for Velar Technologies presentation', linkedAccount: 'Velar Technologies', meetingType: 'focus' },
+  { id: 7, name: 'Pipeline review – Velar Technologies', time: '4PM', datetime: '2025-07-03T16:00', href: '#', guest: 'David Rodriguez', description: 'Review current pipeline status and next steps', linkedAccount: 'Velar Technologies', meetingType: 'meeting', location: 'Zoom' },
   
   // July 4, 2025
   { id: 8, name: 'Draft email – Acme Corp', time: 'All day', datetime: '2025-07-04T00:00', href: '#' },
   
   // July 7, 2025
-  { id: 9, name: 'Deal check-in – Velar Technologies', time: '9AM', datetime: '2025-07-07T09:00', href: '#' },
-  { id: 10, name: 'Focus time – Contract review', time: '10AM', datetime: '2025-07-07T10:00', href: '#' },
-  { id: 11, name: 'Discovery call – InnovateCorp', time: '11AM', datetime: '2025-07-07T11:00', href: '#' },
-  { id: 12, name: 'Lunch with team', time: '12PM', datetime: '2025-07-07T12:00', href: '#' },
-  { id: 13, name: 'Focus time – Follow-up emails', time: '1PM', datetime: '2025-07-07T13:00', href: '#' },
-  { id: 14, name: 'Weekly forecast review – Ardent Media', time: '2PM', datetime: '2025-07-07T14:00', href: '#' },
-  { id: 15, name: 'Sales coaching session', time: '3PM', datetime: '2025-07-07T15:00', href: '#' },
-  { id: 16, name: 'Focus time – Pipeline updates', time: '4PM', datetime: '2025-07-07T16:00', href: '#' },
+  { id: 9, name: 'Deal check-in – Velar Technologies', time: '9AM', datetime: '2025-07-07T09:00', href: '#', guest: 'Lisa Wang', description: 'Regular check-in to discuss deal progress and next steps', linkedAccount: 'Velar Technologies', meetingType: 'meeting', location: 'Google Meet' },
+  { id: 10, name: 'Focus time – Contract review', time: '10AM', datetime: '2025-07-07T10:00', href: '#', description: 'Review and finalize contract terms for Velar Technologies', linkedAccount: 'Velar Technologies', meetingType: 'focus' },
+  { id: 11, name: 'Discovery call – InnovateCorp', time: '11AM', datetime: '2025-07-07T11:00', href: '#', guest: 'Alex Thompson, Jennifer Smith, David Rodriguez', description: 'Initial discovery call with InnovateCorp to explore partnership', linkedAccount: 'InnovateCorp', meetingType: 'meeting', location: 'Zoom' },
+  { id: 12, name: 'Lunch with team', time: '12PM', datetime: '2025-07-07T12:00', href: '#', guest: 'Sales Team', description: 'Weekly team lunch and informal discussion', meetingType: 'meeting', location: 'Room 101' },
+  { id: 13, name: 'Focus time – Follow-up emails', time: '1PM', datetime: '2025-07-07T13:00', href: '#', description: 'Send follow-up emails to prospects and clients', meetingType: 'task' },
+  { id: 14, name: 'Weekly forecast review – Ardent Media', time: '2PM', datetime: '2025-07-07T14:00', href: '#', guest: 'Jennifer Smith', description: 'Review weekly forecast and discuss Ardent Media deal status', linkedAccount: 'Ardent Media', meetingType: 'meeting', location: 'Conference Room A' },
+  { id: 15, name: 'Sales coaching session', time: '3PM', datetime: '2025-07-07T15:00', href: '#', guest: 'VP Sales', description: 'One-on-one coaching session with VP of Sales', meetingType: 'meeting', location: 'Room 205' },
+  { id: 16, name: 'Focus time – Pipeline updates', time: '4PM', datetime: '2025-07-07T16:00', href: '#', description: 'Update CRM with latest pipeline information', meetingType: 'focus' },
   
   // July 8, 2025
-  { id: 17, name: 'Contract alignment – Acme Corp', time: '9AM', datetime: '2025-07-08T09:00', href: '#' },
-  { id: 18, name: 'Focus time – Proposal writing', time: '10AM', datetime: '2025-07-08T10:00', href: '#' },
-  { id: 19, name: 'Technical deep dive – Velar Technologies', time: '11AM', datetime: '2025-07-08T11:00', href: '#' },
-  { id: 20, name: 'Lunch with prospect – TechStart Inc', time: '12PM', datetime: '2025-07-08T12:00', href: '#' },
-  { id: 21, name: 'Focus time – Research prospect', time: '1PM', datetime: '2025-07-08T13:00', href: '#' },
-  { id: 22, name: 'Demo – Ardent Media', time: '2PM', datetime: '2025-07-08T14:00', href: '#' },
-  { id: 23, name: 'Stakeholder meeting – Acme Corp', time: '3PM', datetime: '2025-07-08T15:00', href: '#' },
-  { id: 24, name: 'Focus time – Deal strategy', time: '4PM', datetime: '2025-07-08T16:00', href: '#' },
-  { id: 25, name: 'Team sync – Internal planning', time: '5PM', datetime: '2025-07-08T17:00', href: '#' },
+  { id: 17, name: 'Contract alignment – Acme Corp', time: '9AM', datetime: '2025-07-08T09:00', href: '#', guest: 'Legal Team', description: 'Align contract terms with legal team for Acme Corp deal', linkedAccount: 'Acme Corp', meetingType: 'meeting' },
+  { id: 18, name: 'Focus time – Proposal writing', time: '10AM', datetime: '2025-07-08T10:00', href: '#', description: 'Write detailed proposal for Acme Corp based on requirements', linkedAccount: 'Acme Corp', meetingType: 'focus' },
+  { id: 19, name: 'Technical deep dive – Velar Technologies', time: '11AM', datetime: '2025-07-08T11:00', href: '#', guest: 'Technical Team', description: 'Deep technical discussion with Velar Technologies engineering team', linkedAccount: 'Velar Technologies', meetingType: 'meeting' },
+  { id: 20, name: 'Lunch with prospect – TechStart Inc', time: '12PM', datetime: '2025-07-08T12:00', href: '#', guest: 'Emily Davis', description: 'Lunch meeting to discuss partnership opportunities and next steps', linkedAccount: 'TechStart Inc', meetingType: 'meeting' },
+  { id: 21, name: 'Focus time – Research prospect', time: '1PM', datetime: '2025-07-08T13:00', href: '#', description: 'Research TechStart Inc background and market position', linkedAccount: 'TechStart Inc', meetingType: 'focus' },
+  { id: 22, name: 'Demo – Ardent Media', time: '2PM', datetime: '2025-07-08T14:00', href: '#', guest: 'Marketing Team', description: 'Product demonstration for Ardent Media marketing team', linkedAccount: 'Ardent Media', meetingType: 'meeting' },
+  { id: 23, name: 'Stakeholder meeting – Acme Corp', time: '3PM', datetime: '2025-07-08T15:00', href: '#', guest: 'C-Level Executives', description: 'High-level stakeholder meeting with Acme Corp executives', linkedAccount: 'Acme Corp', meetingType: 'meeting' },
+  { id: 24, name: 'Focus time – Deal strategy', time: '4PM', datetime: '2025-07-08T16:00', href: '#', description: 'Develop strategic approach for Acme Corp deal closure', linkedAccount: 'Acme Corp', meetingType: 'focus' },
+  { id: 25, name: 'Team sync – Internal planning', time: '5PM', datetime: '2025-07-08T17:00', href: '#', guest: 'Sales Team', description: 'Internal team sync to align on priorities and next steps', meetingType: 'meeting' },
   
   // July 9, 2025
   { id: 26, name: 'Demo – Ardent Media', time: '9AM', datetime: '2025-07-09T09:00', href: '#' },
   { id: 27, name: 'Focus time – Post-demo follow-up', time: '10AM', datetime: '2025-07-09T10:00', href: '#' },
-  { id: 28, name: 'Discovery call – NewProspect Inc', time: '11AM', datetime: '2025-07-09T11:00', href: '#' },
+  { id: 28, name: 'Discovery call – NewProspect Inc', time: '11AM', datetime: '2025-07-09T11:00', href: '#', guest: 'Emily Davis, Robert Kim, Amanda Chen', description: 'Initial discovery call with NewProspect Inc to explore business opportunities', linkedAccount: 'NewProspect Inc', meetingType: 'meeting', location: 'Google Meet' },
   { id: 29, name: 'Lunch with prospect – Velar Technologies', time: '12PM', datetime: '2025-07-09T12:00', href: '#' },
   { id: 30, name: 'Focus time – Competitive analysis', time: '1PM', datetime: '2025-07-09T13:00', href: '#' },
   { id: 31, name: 'Executive presentation – Acme Corp', time: '2PM', datetime: '2025-07-09T14:00', href: '#' },
@@ -145,7 +150,7 @@ const allEvents: CalendarEvent[] = [
   // July 11, 2025 (Friday - lighter afternoon)
   { id: 42, name: 'Procurement prep – Velar Technologies', time: '9AM', datetime: '2025-07-11T09:00', href: '#' },
   { id: 43, name: 'Focus time – Research procurement process', time: '10AM', datetime: '2025-07-11T10:00', href: '#' },
-  { id: 44, name: 'Discovery call – FutureTech Corp', time: '11AM', datetime: '2025-07-11T11:00', href: '#' },
+  { id: 44, name: 'Discovery call – FutureTech Corp', time: '11AM', datetime: '2025-07-11T11:00', href: '#', guest: 'Michael Brown, Sarah Wilson, Kevin Lee', description: 'Discovery call with FutureTech Corp to discuss potential partnership', linkedAccount: 'FutureTech Corp', meetingType: 'meeting', location: 'Zoom' },
   { id: 45, name: 'Lunch with prospect – TechStart Inc', time: '12PM', datetime: '2025-07-11T12:00', href: '#' },
   { id: 46, name: 'Focus time – Deal analysis', time: '1PM', datetime: '2025-07-11T13:00', href: '#' },
   { id: 47, name: '1:1 with VP Sales', time: '2PM', datetime: '2025-07-11T14:00', href: '#' },
@@ -163,7 +168,7 @@ const allEvents: CalendarEvent[] = [
   // July 15, 2025
   { id: 56, name: 'Technical deep dive – Velar Technologies', time: '9AM', datetime: '2025-07-15T09:00', href: '#' },
   { id: 57, name: 'Focus time – Technical documentation', time: '10AM', datetime: '2025-07-15T10:00', href: '#' },
-  { id: 58, name: 'Discovery call – NextGen Solutions', time: '11AM', datetime: '2025-07-15T11:00', href: '#' },
+  { id: 58, name: 'Discovery call – NextGen Solutions', time: '11AM', datetime: '2025-07-15T11:00', href: '#', guest: 'Jessica Park, Daniel Martinez, Rachel Green', description: 'Discovery call with NextGen Solutions to explore collaboration opportunities', linkedAccount: 'NextGen Solutions', meetingType: 'meeting', location: 'Google Meet' },
   { id: 59, name: 'Lunch with prospect – Acme Corp', time: '12PM', datetime: '2025-07-15T12:00', href: '#' },
   { id: 60, name: 'Focus time – Deal strategy', time: '1PM', datetime: '2025-07-15T13:00', href: '#' },
   { id: 61, name: 'Sales team training', time: '3PM', datetime: '2025-07-15T15:00', href: '#' },
@@ -179,7 +184,7 @@ const allEvents: CalendarEvent[] = [
   { id: 69, name: 'Quarterly business review', time: '5PM', datetime: '2025-07-16T17:00', href: '#' },
   
   // July 17, 2025
-  { id: 70, name: 'Discovery call – TechStart Inc', time: '9AM', datetime: '2025-07-17T09:00', href: '#' },
+  { id: 70, name: 'Discovery call – TechStart Inc', time: '9AM', datetime: '2025-07-17T09:00', href: '#', guest: 'Chris Johnson, Maria Garcia, Tom Anderson', description: 'Discovery call with TechStart Inc to discuss startup partnership opportunities', linkedAccount: 'TechStart Inc', meetingType: 'meeting', location: 'Zoom' },
   { id: 71, name: 'Focus time – Research prospect', time: '10AM', datetime: '2025-07-17T10:00', href: '#' },
   { id: 72, name: 'Competitive analysis – Ardent Media', time: '11AM', datetime: '2025-07-17T11:00', href: '#' },
   { id: 73, name: 'Lunch with prospect – InnovateCorp', time: '12PM', datetime: '2025-07-17T12:00', href: '#' },
@@ -287,14 +292,17 @@ const allEvents: CalendarEvent[] = [
 
 // Helper function to determine event color
 function getEventColor(eventName: string): string {
-  // Grey for focus time, check todo + mail, and family time
+  // Base grey background for all events
+  const baseClasses = 'bg-slate-200 text-slate-700 border-slate-300 dark:bg-zinc-900 dark:text-zinc-300 dark:border-zinc-600/30'
+  
+  // Grey for focus time, check todo + mail, and family time (no colored border)
   if (eventName.includes('Focus time') || 
       eventName.includes('Check todo + mail') || 
       eventName.includes('Family time DNB')) {
-    return 'bg-gray-100 text-gray-700 border-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600/30'
+    return baseClasses
   }
   
-  // Blue for internal meetings
+  // Blue top border for internal meetings
   if (eventName.includes('Team') || 
       eventName.includes('All-hands') || 
       eventName.includes('Sales team') ||
@@ -305,37 +313,37 @@ function getEventColor(eventName: string): string {
       eventName.includes('Sales strategy session') ||
       eventName.includes('Team celebration') ||
       eventName.includes('Quarterly sales review')) {
-    return 'bg-blue-100 text-blue-700 border-blue-300 dark:bg-blue-900/50 dark:text-blue-300 dark:border-blue-700/30'
+    return `${baseClasses} border-t-2 border-t-blue-500 dark:border-t-blue-400`
   }
   
-  // Client-specific colors
+  // Client-specific colored top borders
   if (eventName.includes('Acme Corp')) {
-    return 'bg-green-100 text-green-700 border-green-300 dark:bg-green-900/50 dark:text-green-300 dark:border-green-700/30'
+    return `${baseClasses} border-t-2 border-t-emerald-500 dark:border-t-emerald-400`
   }
   if (eventName.includes('Ardent Media')) {
-    return 'bg-purple-100 text-purple-700 border-purple-300 dark:bg-purple-900/50 dark:text-purple-300 dark:border-purple-700/30'
+    return `${baseClasses} border-t-2 border-t-indigo-500 dark:border-t-indigo-400`
   }
   if (eventName.includes('Velar Technologies')) {
-    return 'bg-orange-100 text-orange-700 border-orange-300 dark:bg-orange-900/50 dark:text-orange-300 dark:border-orange-700/30'
+    return `${baseClasses} border-t-2 border-t-cyan-500 dark:border-t-cyan-400`
   }
   if (eventName.includes('TechStart Inc')) {
-    return 'bg-pink-100 text-pink-700 border-pink-300 dark:bg-pink-900/50 dark:text-pink-300 dark:border-pink-700/30'
+    return `${baseClasses} border-t-2 border-t-pink-500 dark:border-t-pink-400`
   }
   if (eventName.includes('InnovateCorp')) {
-    return 'bg-indigo-100 text-indigo-700 border-indigo-300 dark:bg-indigo-900/50 dark:text-indigo-300 dark:border-indigo-700/30'
+    return `${baseClasses} border-t-2 border-t-indigo-500 dark:border-t-indigo-400`
   }
   if (eventName.includes('NewProspect Inc')) {
-    return 'bg-teal-100 text-teal-700 border-teal-300 dark:bg-teal-900/50 dark:text-teal-300 dark:border-teal-700/30'
+    return `${baseClasses} border-t-2 border-t-teal-500 dark:border-t-teal-400`
   }
   if (eventName.includes('FutureTech Corp')) {
-    return 'bg-cyan-100 text-cyan-700 border-cyan-300 dark:bg-cyan-900/50 dark:text-cyan-300 dark:border-cyan-700/30'
+    return `${baseClasses} border-t-2 border-t-cyan-500 dark:border-t-cyan-400`
   }
   if (eventName.includes('NextGen Solutions')) {
-    return 'bg-amber-100 text-amber-700 border-amber-300 dark:bg-amber-900/50 dark:text-amber-300 dark:border-amber-700/30'
+    return `${baseClasses} border-t-2 border-t-amber-500 dark:border-t-amber-400`
   }
   
-  // Default color for other meetings
-  return 'bg-gray-50 text-gray-900 border-gray-200 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600/30'
+  // Default grey for other meetings (no colored border)
+  return baseClasses
 }
 
 // Helper function to get events for a specific date

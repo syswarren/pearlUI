@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ChevronDown, ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
@@ -10,12 +10,15 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu'
-import { weekEvents } from './calendar-data'
+import { weekEvents, CalendarEvent } from './calendar-data'
+import EventModal from '@/components/EventModal'
 
 export default function WeekView() {
   const container = useRef<HTMLDivElement>(null)
   const containerNav = useRef<HTMLDivElement>(null)
   const containerOffset = useRef<HTMLDivElement>(null)
+  const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
     // Set the container scroll position to 8am (8 hours * 60 minutes = 480 minutes)
@@ -27,6 +30,17 @@ export default function WeekView() {
         1440
     }
   }, [])
+
+  const handleEventClick = (event: CalendarEvent, e: React.MouseEvent) => {
+    e.preventDefault()
+    setSelectedEvent(event)
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setSelectedEvent(null)
+  }
 
   return (
     <div className="flex-1 flex flex-col overflow-hidden">
@@ -290,12 +304,12 @@ export default function WeekView() {
                           gridColumn: `${event.day} / ${event.day + 1}`
                         }}
                       >
-                        <a
-                          href={event.href}
-                          className={`group absolute inset-1 flex flex-col overflow-y-auto rounded-lg p-1 text-xs/4 border ${event.color || 'bg-gray-50 text-gray-900 border-gray-200'}`}
+                        <button
+                          onClick={(e) => handleEventClick(event, e)}
+                          className={`group absolute inset-1 flex flex-col overflow-y-auto rounded p-1 text-xs/4 border cursor-pointer hover:opacity-80 transition-opacity ${event.color || 'bg-gray-50 text-gray-900 border-gray-200'}`}
                         >
                           <p className="font-semibold text-xs">{event.name}</p>
-                        </a>
+                        </button>
                       </li>
                     )
                   })
@@ -305,6 +319,12 @@ export default function WeekView() {
           </div>
         </div>
       </div>
+      
+      <EventModal 
+        event={selectedEvent}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </div>
   )
 } 

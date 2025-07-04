@@ -13,7 +13,8 @@ import {
 import PageHeader from "@/components/PageHeader"
 import WeekView from './week-view'
 import MonthView from './month-view'
-import { getEventsForDate, timeToGridRow } from './calendar-data'
+import { getEventsForDate, timeToGridRow, CalendarEvent } from './calendar-data'
+import EventModal from '@/components/EventModal'
 
 const days = [
   { date: '2021-12-27' },
@@ -69,6 +70,8 @@ export default function CalendarPage() {
   const container = useRef<HTMLDivElement>(null)
   const containerNav = useRef<HTMLDivElement>(null)
   const containerOffset = useRef<HTMLDivElement>(null)
+  const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
     // Set the container scroll position to 6am (6 hours * 60 minutes = 360 minutes)
@@ -80,6 +83,17 @@ export default function CalendarPage() {
         1440
     }
   }, [view])
+
+  const handleEventClick = (event: CalendarEvent, e: React.MouseEvent) => {
+    e.preventDefault()
+    setSelectedEvent(event)
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setSelectedEvent(null)
+  }
 
   return (
     <div className="flex h-[calc(100vh-6rem)] flex-col">
@@ -334,12 +348,12 @@ export default function CalendarPage() {
                     
                     return (
                       <li key={event.id} className="relative mt-px flex" style={{ gridRow: `${startRow} / span ${duration}` }}>
-                        <a
-                          href={event.href}
-                          className={`group absolute inset-1 flex flex-col overflow-y-auto rounded-lg p-1 text-xs/4 border ${event.color || 'bg-gray-50 text-gray-900 border-gray-200'}`}
+                        <button
+                          onClick={(e) => handleEventClick(event, e)}
+                          className={`group absolute inset-1 flex flex-col overflow-y-auto rounded p-1 text-xs/4 border cursor-pointer hover:opacity-80 transition-opacity ${event.color || 'bg-gray-50 text-gray-900 border-gray-200'}`}
                         >
                           <p className="font-semibold text-xs">{event.name}</p>
-                        </a>
+                        </button>
                       </li>
                     )
                   })
@@ -412,6 +426,12 @@ export default function CalendarPage() {
         </div>
       </div>
         )}
+      
+      <EventModal 
+        event={selectedEvent}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </div>
   )
 } 
