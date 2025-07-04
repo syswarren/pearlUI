@@ -145,7 +145,7 @@ export default function ChatPanel({ isOpen, onToggle, className }: ChatPanelProp
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Type your message..."
                 disabled={isLoading}
-                className="min-h-[60px] max-h-[120px] resize-none bg-background"
+                className="resize-none bg-background"
               />
               <div className="flex items-center justify-end w-full mt-2">
                 <AIInputTools>

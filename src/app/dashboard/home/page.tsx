@@ -101,7 +101,7 @@ export default function HomePage() {
             onChange={(e) => setInputValue(e.target.value)}
             placeholder="What would you like to discuss today?"
             disabled={isLoading}
-            className="min-h-[80px] max-h-[200px] resize-none"
+            className="resize-none"
           />
           <div className="flex items-center justify-end w-full mt-2">
             <AIInputTools>

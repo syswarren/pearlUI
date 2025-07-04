@@ -145,7 +145,7 @@ export default function FolderPage() {
                   onChange={(e) => setInputValue(e.target.value)}
                   placeholder="Ask about this account..."
                   disabled={isLoading}
-                  className="min-h-[80px] max-h-[200px] resize-none"
+                  className="resize-none"
                 />
                 <div className="flex items-center justify-end w-full mt-2">
                   <AIInputTools>

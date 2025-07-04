@@ -84,7 +84,8 @@ export const AIInput = ({ className, ...props }: AIInputProps) => {
   
   return (
     <div className={cn(
-      "relative p-[1px] min-h-[120px]",
+      "relative p-[1px]",
+      isMobile ? "min-h-[60px]" : "min-h-[120px]",
       isMobile && "w-screen max-w-none left-1/2 -translate-x-1/2 fixed bottom-0 z-50"
     )}>
       {/* Upward shadow behind gradient */}
@@ -104,8 +105,8 @@ export const AIInput = ({ className, ...props }: AIInputProps) => {
       {/* Main content */}
       <form
         className={cn(
-          'relative flex flex-col w-full bg-white dark:bg-[#2d2f33] pt-5 pl-5 pr-5 pb-3 ring-offset-background transition-colors shadow-[0px_1px_3px_0px_rgba(17,_12,_46,_0.15)] dark:shadow-none min-h-[120px]',
-          isMobile ? "rounded-t-3xl w-screen max-w-none px-4 text-base" : "rounded-3xl",
+          'relative flex flex-col w-full bg-white dark:bg-[#2d2f33] pt-5 pl-5 pr-5 pb-3 ring-offset-background transition-colors shadow-[0px_1px_3px_0px_rgba(17,_12,_46,_0.15)] dark:shadow-none',
+          isMobile ? "rounded-t-3xl w-screen max-w-none px-4 text-base min-h-[60px]" : "rounded-3xl min-h-[120px]",
           className
         )}
         {...props}
@@ -124,10 +125,16 @@ export const AIInputTextarea = ({
   className,
   placeholder = 'What would you like to know?',
   value,
+  minHeight,
+  maxHeight,
   ...props
 }: AIInputTextareaProps) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [isMobile, setIsMobile] = useState(false);
+
+  // Set appropriate heights for mobile vs desktop
+  const defaultMinHeight = isMobile ? 24 : (minHeight || 80);
+  const defaultMaxHeight = isMobile ? 80 : (maxHeight || 300);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -141,19 +148,29 @@ export const AIInputTextarea = ({
   const adjustHeight = useCallback(() => {
     const textarea = textareaRef.current;
     if (!textarea) return;
-    textarea.style.height = '80px';
-    const newHeight = Math.min(textarea.scrollHeight, 300);
+    
+    // Reset to minimum height first
+    textarea.style.height = `${defaultMinHeight}px`;
+    
+    // Calculate new height based on content
+    const newHeight = Math.min(textarea.scrollHeight, defaultMaxHeight);
     textarea.style.height = `${newHeight}px`;
-  }, []);
+  }, [defaultMinHeight, defaultMaxHeight]);
 
   useEffect(() => {
+    // Adjust height when value changes
+    adjustHeight();
+  }, [value, adjustHeight]);
+
+  useEffect(() => {
+    // Reset height when value is empty
     if (!value || value === '') {
       const textarea = textareaRef.current;
       if (textarea) {
-        textarea.style.height = '80px';
+        textarea.style.height = `${defaultMinHeight}px`;
       }
     }
-  }, [value]);
+  }, [value, defaultMinHeight]);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     adjustHeight();
@@ -191,8 +208,7 @@ export const AIInputTextarea = ({
         'w-full resize-none rounded-none border-none p-0 shadow-none outline-none ring-0',
         'bg-transparent dark:bg-transparent',
         'focus-visible:ring-0',
-        'min-h-[80px]',
-        isMobile ? 'text-base' : 'text-base',
+        isMobile ? 'min-h-[24px] text-base' : 'min-h-[80px] text-base',
         className
       )}
       onChange={handleChange}
