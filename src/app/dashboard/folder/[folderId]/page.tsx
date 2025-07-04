@@ -4,14 +4,17 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import PageHeader from "@/components/PageHeader";
 import { Button } from "@/components/ui/button";
-import { Building2, BadgeDollarSign, BadgeInfo } from "lucide-react";
+import { Users, BadgeDollarSign, Paperclip, AudioLines } from "lucide-react";
 import { sidebarMenu } from "@/demoData-sidebar";
 import ConversationsList, { Discussion } from "@/components/ConversationsList";
+import { AIInput, AIInputTextarea, AIInputTools, AIInputButton } from "@/components/ui/kibo-ui/ai/input";
 
 export default function FolderPage() {
   const params = useParams<{ folderId: string }>()
   const searchParams = useSearchParams()
   const [activeTab, setActiveTab] = useState('overview')
+  const [inputValue, setInputValue] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
   
   const folder = sidebarMenu.find(f => f.url.endsWith(`/folder/${params.folderId}`));
   const folderTitle = folder?.title || params.folderId;
@@ -60,8 +63,102 @@ export default function FolderPage() {
       case 'overview':
         return (
           <div className="mt-16">
+            {/* Stats Section */}
+            <div className="mb-8">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 w-full">
+                <div className="flex flex-col border-b sm:border-b-0 sm:border-r border-gray-300 dark:border-gray-700 pb-4 sm:pb-0 sm:pr-8 w-full sm:w-auto">
+                  <span className="text-sm text-muted-foreground">Deal value</span>
+                  <div className="flex items-center mt-2 gap-2">
+                    <span className="text-sm font-semibold text-foreground">
+                      €850,000 / €1.2M
+                    </span>
+                    <span className="text-sm text-foreground opacity-60">71%</span>
+                  </div>
+                </div>
+                <div className="flex flex-col border-b sm:border-b-0 sm:border-r border-gray-300 dark:border-gray-700 pb-4 sm:pb-0 sm:pr-8 w-full sm:w-auto">
+                  <span className="text-sm text-muted-foreground">Engagement score</span>
+                  <div className="flex items-center mt-2 gap-2">
+                    <span className="text-sm font-semibold text-foreground">
+                      8.5 / 10
+                    </span>
+                    <span className="text-sm text-foreground opacity-60">85%</span>
+                  </div>
+                </div>
+                <div className="flex flex-col border-b sm:border-b-0 sm:border-r border-gray-300 dark:border-gray-700 pb-4 sm:pb-0 sm:pr-8 w-full sm:w-auto">
+                  <span className="text-sm text-muted-foreground">Last activity</span>
+                  <div className="flex items-center mt-2 gap-2">
+                    <span className="text-sm font-semibold text-foreground">
+                      2 days ago
+                    </span>
+                    <span className="text-sm text-foreground opacity-60">Active</span>
+                  </div>
+                </div>
+                <div className="flex flex-col w-full sm:w-auto">
+                  <span className="text-sm text-muted-foreground">Primary contact</span>
+                  <div className="flex items-center mt-2 gap-2">
+                    <span className="text-sm font-semibold text-foreground">
+                      Sophie Tremblay
+                    </span>
+                    <span className="text-sm text-foreground opacity-60">VP of Operations</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Summary Section */}
+            <div className="mb-8">
+              <h2 className="text-[14px] font-normal text-muted-foreground mb-3">Summary</h2>
+              <div className="p-4 rounded-lg bg-gradient-to-r from-muted/100 to-transparent">
+                <div className="text-sm text-foreground leading-relaxed max-w-3xl space-y-0">
+                  <div><strong>Status:</strong> The deal is progressing well with strong engagement from the client.</div>
+                  <div><strong>Initial discovery:</strong> Completed</div>
+                  <div><strong>Technical validation:</strong> Approved by client's tech team</div>
+                  <div><strong>Contract:</strong> In negotiation</div>
+                  <div><strong>Budget:</strong> Awaiting final approval from our side</div>
+                  <div><strong>Next steps:</strong> Finalize contract terms</div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Conversations Section */}
             <h2 className="text-[14px] font-normal text-muted-foreground mb-2">Conversations</h2>
             <ConversationsList discussions={discussions} />
+            
+            {/* View More Button */}
+            <div className="mt-6">
+              <Button variant="outline" className="w-full">
+                View more
+              </Button>
+            </div>
+            
+            {/* Chat Input */}
+            <div className="mt-16">
+              <AIInput onSubmit={(e) => {
+                e.preventDefault()
+                if (!inputValue.trim() || isLoading) return
+                // Handle chat submission here
+                console.log('Chat submitted:', inputValue)
+                setInputValue("")
+              }}>
+                <AIInputTextarea
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  placeholder="Ask about this account..."
+                  disabled={isLoading}
+                  className="min-h-[80px] max-h-[200px] resize-none"
+                />
+                <div className="flex items-center justify-end w-full mt-2">
+                  <AIInputTools>
+                    <AIInputButton variant="default" disabled={isLoading}>
+                      <Paperclip className="h-4 w-4" />
+                    </AIInputButton>
+                    <AIInputButton variant="default" disabled={isLoading}>
+                      <AudioLines className="h-4 w-4" />
+                    </AIInputButton>
+                  </AIInputTools>
+                </div>
+              </AIInput>
+            </div>
           </div>
         );
       case 'touchpoints':
@@ -117,14 +214,8 @@ export default function FolderPage() {
         title={folderTitle}
         logoUrl="/logo_folder.png"
         descriptionItems={[
-          { icon: <Building2 className="size-4" />, label: "Tech" },
+          { icon: <Users className="size-4" />, label: "50-100 employees" },
           { icon: <BadgeDollarSign className="size-4" />, label: "$1.2M ARR" },
-          { icon: <BadgeInfo className="size-4" />, label: (
-            <>
-              <span className="inline lg:hidden">Important</span>
-              <span className="hidden lg:inline">Could help reach your annual revenue goal</span>
-            </>
-          ) },
         ]}
         action={<Button variant="secondary">View in Salesforce</Button>}
       />
